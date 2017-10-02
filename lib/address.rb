@@ -7,4 +7,6 @@ class Address < ActiveRecord::Base
   validates(:state {presence: true})
   validates(:country {presence: true})
   validates(:zipcode {presence: true})
+
+
 end
