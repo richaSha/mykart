@@ -1,0 +1,6 @@
+development:
+  adapter: postgresql
+  database: mykart_development
+test:
+  adapter: postgresql
+  database: mykart_test

@@ -1,0 +1,224 @@
+.header {
+    background: #f2f2f2;
+}
+.social-list li a, .social-list li{
+  display: inline-block;
+}
+.social-list {
+  list-style: none;
+  display: inline-block;
+  margin: 0;
+  height: 35px;
+  float: right;
+}
+.sm {
+  height: 30px;
+  width: 30px;
+  display: inline-block;
+  background-position: center;
+  background-size: cover;
+}
+.sm-youtube{
+  background-image: url('/image/youtube2.png');
+}
+.sm-facebook{
+  background-image: url('/image/facebook2.png');
+}
+.sm-twitter{
+  background-image: url('/image/twitter2.png');
+}
+.sm-google{
+  background-image: url('/image/googleplus2.png');
+}
+.sm-youtube:hover{
+  background-image: url('/image/youtube.png');
+}
+.sm-facebook:hover{
+  background-image: url('/image/facebook.png');
+}
+.sm-twitter:hover{
+  background-image: url('/image/twitter.png');
+}
+.sm-google:hover{
+  background-image: url('/image/googleplus.png');
+}
+.fixed {
+  position: fixed;
+  width: 100%;
+  background: #f2f2f2;
+  top: 0;
+  padding-bottom: 1rem;
+}
+.logo{
+  width: 40%;
+}
+.search {
+    position: relative;
+    z-index: 46;
+    width: 100%;
+    height: 35px;
+    padding: 0 93px 0 11px;
+    border: 1px solid #E5E5E5;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    background: #FFF;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    margin-top: 8px;
+}
+.search input {
+    line-height: 16px;
+    height: 100%;
+    width: 100%;
+    background: transparent;
+    border: none;
+    color: #2f2f2f;
+    outline: none;
+}
+.search button {
+    background: none;
+    border: none;
+    display: inline-block;
+    padding: 0;
+    outline: none;
+    outline-offset: 0;
+    cursor: pointer;
+    -webkit-appearance: none;
+    position: absolute;
+    right: 0;
+    top: -1px;
+    bottom: -1px;
+    padding: 0 18px;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    background: #19caaf;
+    color: #FFF;
+    font-size: 14px;
+}
+.clear {
+    clear: both;
+    margin: 0;
+    padding: 0;
+    font-size: 0;
+    border: 0;
+    line-height: 0;
+}
+.phone {
+  color: #2f2f2f;
+  font-size: 21px;
+  font-weight: 500;
+  float: right;
+}
+.user{
+  float: right;
+  width: 10%;
+  font-size: 13px;
+  line-height: 30px;
+  font-family: sans-serif;
+}
+.user a{
+  color: #19caaf;
+  margin-left: 10%;
+}
+.nav {
+  margin-top: 19px;
+  background: #2f2f2f;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  padding-left: 24px;
+}
+.nav>ul {
+    margin: 0;
+    float: left;
+}
+.nav>ul>li {
+    margin-top: 20px;
+}
+.nav a {
+    font-size: 14px;
+    color: #FFF;
+}
+a {
+    font: inherit;
+    color: inherit;
+    text-decoration: none;
+    outline: none;
+    -moz-transition: 0.3s all ease;
+    -o-transition: 0.3s all ease;
+    -webkit-transition: 0.3s all ease;
+    transition: 0.3s all ease;
+}
+.box-cart {
+    position: relative;
+}
+.header .box-currency, .header .box-cart {
+    float: right;
+}
+.cart {
+    position: relative;
+}
+.cart>button {
+    background: #19caaf;
+    border-top-right-radius: 5px;
+    border: 0;
+    padding: 0 21px 0 18px;
+    line-height: 59px;
+    text-align: center;
+    font-size: 14px;
+    color: #FFF;
+}
+.cart>button>i {
+    float: left;
+    margin-right: 10px;
+    font-size: 30px;
+    color: #FFF;
+    display: block;
+}
+.cart .cart-total {
+  margin-left: 1rem !important;
+  font-size: 15px;
+  font-family: sans-serif;
+}
+.cart .dropdown-menu {
+    background: #f2f2f2;
+    z-index: 1001;
+    min-width: 260px;
+}
+.cart .dropdown-menu li p {
+    margin: 20px 0;
+}
+.navigation{
+  margin-top: 95px;
+}
+.cart-icon{
+  height: 30px;
+  width: 30px;
+}
+.cart-down{
+  margin-left: 2rem !important;
+}
+.home-icon, .account-icon, .carts-icon{
+  color: #19caaf;
+  margin-left: 20px;
+}
+.nav-name{
+  margin: 5px;;
+}
+.box-heading h3 {
+    padding: 18px 5px 18px 20px;
+    font-size: 19px;
+    line-height: 24px;
+    font-weight: 400;
+    background: rgba(25, 202, 175, 1);
+    border-top-right-radius: 3px;
+    border-top-left-radius: 3px;
+    color: #FFF;
+    margin: 0;
+    text-transform: none;
+    margin-top: 19px;
+}
+.justify-icon{
+  margin-right: 1rem;
+}
