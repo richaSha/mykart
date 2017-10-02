@@ -1,3 +1,6 @@
+.hide{
+  display:none;
+}
 .header {
     background: #f2f2f2;
 }
@@ -310,5 +313,16 @@ a {
 .prev-next{
   position: absolute;
   bottom: 0;
-  right: 5%;
+  right: 3%;
+  padding: 6px;
+  width: 8%;
+}
+.prev-next a{
+  padding: 1px;
+  background: #000;
+  border-radius: 1rem;
+  color: #fff;
+}
+.prev-next a:hover{
+  color: #19caaf !important;
 }
