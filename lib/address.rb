@@ -6,7 +6,7 @@ class Address < ActiveRecord::Base
   validates(:city, {presence: true})
   validates(:state, {presence: true})
   validates(:country, {presence: true})
-  validates(:zipcode, {presence: true})
+  validates(:zipcode, {presence: true, length: { minimum: 5, maximum: 5 } })
 
 
 end

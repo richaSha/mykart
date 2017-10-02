@@ -11,4 +11,13 @@ class User  < ActiveRecord::Base
   validates(:email, {presence: true, uniqueness: true, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, on: :create } })
   validates(:password, {presence: true, format: {with: /\A([^\s]+)\z/i, on: :create } })
 
+  before_save(:capitalizes_name)
+
+  private
+
+  def capitalizes_name
+    name = self.name.split(" ")
+    self.name = name.map{ |word| word.capitalize }.join(" ")
+  end
+
 end
