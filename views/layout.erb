@@ -18,8 +18,13 @@
       <div class="fixed">
         <div class="container">
           <div class="user">
-            <a href="/new_account" class="signup">Signup</a>
-            <a href="#" class="login">Log In</a>
+            <% if session['user'] %>
+              <p>Hello, <%= session['user'].name %> </p>
+              <a href="/logout">Logout</a>
+            <% else %>
+              <a href="/new_account" class="signup">Signup</a>
+              <a href="/login" class="login">Log In</a>
+            <% end %>
           </div>
           <div class="box-right">
             <ul class="social-list">
@@ -56,11 +61,13 @@
           <div class="box-heading">
             <h3><span class="glyphicon glyphicon-align-justify justify-icon"></span></i>Categories</h3>
             <div class="box-category">
-              <ul>
-                <%@category_list.each do |category|%>
+              <% if @category_list.any? %>
+                <ul>
+                  <%@category_list.each do |category|%>
                   <li><a href="/category/<%= category.id %>"><%= category.name %></a></li>
-                <%end%>
-              </ul>
+                  <%end%>
+                </ul>
+              <% end %>
             </div>
           </div>
         </div>
