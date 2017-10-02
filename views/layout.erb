@@ -10,7 +10,7 @@
 
    <!-- Latest compiled JavaScript -->
    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-   <script type="text/javascript" src="/js/script.js">
+   <script type="text/javascript" src="/js/scripts.js">
    </script>
   </head>
   <body>
@@ -55,31 +55,38 @@
         <div class="col-sm-3">
           <div class="box-heading">
             <h3><span class="glyphicon glyphicon-align-justify justify-icon"></span></i>Categories</h3>
+            <div class="box-category">
+              <ul>
+                <%@category_list.each do |category|%>
+                  <li><a href="/category/<%= category.id %>"><%= category.name %></a></li>
+                <%end%>
+              </ul>
+            </div>
           </div>
         </div>
         <div class="col-sm-9">
           <nav id="top" class="top_panel">
             <div id="top-links" class="nav">
               <ul class="list-inline">
-                            <li>
-                                <a href="#">
-                                  <span class="glyphicon glyphicon-home home-icon" ></span>
-                                  <span class="nav-name">Home</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" title="My Account">
-                                  <span class="glyphicon glyphicon-user account-icon"></span>
-                                  <span class="nav-name">My Account</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                  <span class="glyphicon glyphicon-shopping-cart carts-icon" ></span>
-                                  <span class="nav-name">Shopping Cart</span>
-                                </a>
-                            </li>
-                        </ul>
+                <li>
+                    <a href="#">
+                      <span class="glyphicon glyphicon-home home-icon" ></span>
+                      <span class="nav-name">Home</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" title="My Account">
+                      <span class="glyphicon glyphicon-user account-icon"></span>
+                      <span class="nav-name">My Account</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                      <span class="glyphicon glyphicon-shopping-cart carts-icon" ></span>
+                      <span class="nav-name">Shopping Cart</span>
+                    </a>
+                </li>
+            </ul>
               <div class="box-cart">
                 <div id="cart" class="cart">
                 	<button type="button" data-toggle="dropdown" data-loading-text="Loading..." class="dropdown-toggle">
