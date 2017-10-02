@@ -7,53 +7,32 @@ Dir[File.dirname(__FILE__) + '/lib/*.rb'].each { |file| require file }
 
 
 get ('/') do
-  # id = session[:current_user_id]
+  @category_list = Category.all()
+  erb(:index)
+end
+
+# get ('/') do
+#   # id = session[:current_user_id]
+#   erb(:login)
+# end
+
+get('/login') do
+  @category_list = Category.all()
   erb(:login)
 end
 
-get('login') do
-
-  erb(:login)
-end
-
-get('/new-account') do
+get('/new_account') do
+  @category_list = Category.all()
   erb(:new_account)
 end
 
-
-
-
-
-
-
-
-
-post ('/') do
-
-  email_add = params.fetch("email")
-  user_password = params.fetch("password")
-  user = User.find_by(email: email_add)
-  if user
-    password = Password.new(user.password)
-    if password == user_password
-
-      session[:current_user_id] = user.id
-
-      redirect to('/')
-
-    else
-      erb(:error)
-    end
+post('/create_account') do
+  session['error'] = nil
+  new_user = User.new({name: params['name'], username: params['username'], password: params['password'], email: params['email']})
+  if new_user.save
+    redirect 'login'
   else
-    erb(:error)
+    session['error'] = new_user
+    redirect 'new_account'
   end
-
-end
-
-get ('/cart') do
-  session = params[:session]
-
-  id = session[:current_user_id]
-
-  erb(:index)
 end
