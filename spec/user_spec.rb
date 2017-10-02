@@ -51,4 +51,10 @@ describe 'User' do
     user = User.new({name: "Elrey", username: "star122", email: "rey@yahoo.com", password: 'do245&#{$#{[9;]}}'})
     expect(user.save).to eq true
   end
+
+  it 'passes validation' do
+    user = User.new({name: "sam smith", username: "sam122", email: "sam2@yahoo.com", password: 'do245&#{$#{[9;]}}'})
+    user.save
+    expect(user.name).to eq "Sam Smith"
+  end
 end
