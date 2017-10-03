@@ -55,3 +55,8 @@ post('/login') do
     erb(:error)
   end
 end
+
+get('/cart') do
+  @seprate_cataegory = false;
+  erb(:cart)
+end
