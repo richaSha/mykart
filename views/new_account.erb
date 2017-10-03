@@ -1,0 +1,42 @@
+<div class="new-account-container">
+  <img src="/image/logo2.png" alt="My kart" class="logo">
+  <div class="well">
+    <% if session['error'] %>
+      <% session['error'].errors.full_messages.each do |message| %>
+      <ul>
+        <li class="error"> <%= message %> </li>
+      </ul>
+      <% end %>
+    <% end %>
+    <form class="" action="/create_account" method="post">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" name="name" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" name="username" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="text" name="email" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" name="password" class="form-control" id="password">
+      </div>
+      <div class="password-error error hide">
+        <p>Passwords must be the same</p>
+      </div>
+      <div class="form-group">
+        <label for="re-password">Re-enter Password</label>
+        <input type="password" name="re-password" class="form-control" id="re-password">
+        <div class="password-error error hide">
+          <p>Passwords must be the same</p>
+        </div>
+      </div>
+      <button type="submit" name="button" class="btn create">create</button>
+    </form>
+  </div>
+
+</div>

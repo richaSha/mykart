@@ -180,36 +180,45 @@ a {
     color: #FFF;
     display: block;
 }
+
 .cart .cart-total {
   margin-left: 1rem !important;
   font-size: 15px;
   font-family: sans-serif;
 }
+
 .cart .dropdown-menu {
     background: #f2f2f2;
     z-index: 1001;
     min-width: 260px;
 }
+
 .cart .dropdown-menu li p {
     margin: 20px 0;
 }
+
 .navigation{
   margin-top: 95px;
 }
+
 .cart-icon{
   height: 30px;
   width: 30px;
 }
+
 .cart-down{
   margin-left: 2rem !important;
 }
+
 .home-icon, .account-icon, .carts-icon{
   color: #19caaf;
   margin-left: 20px;
 }
+
 .nav-name{
   margin: 5px;;
 }
+
 .box-heading h3 {
     padding: 18px 5px 18px 20px;
     font-size: 19px;
@@ -223,20 +232,25 @@ a {
     text-transform: none;
     margin-top: 19px;
 }
+
 .justify-icon{
   margin-right: 1rem;
 }
+
 .box-heading{
   position: relative;
 }
+
 .box-category{
   position: absolute;
   width: 100%;
 }
+
 .box-category ul{
   margin: 0;
   padding: 0;
 }
+
 .box-category li{
   list-style: none;
   display: block;
@@ -247,16 +261,20 @@ a {
   font-weight: 500;
   border-top: 1px solid #D9D9D9;
 }
+
 .box-category li a{
   color: #2b2b2b !important;
 }
+
 .box-category li a:hover{
   text-decoration: none;
   color: #19caaf !important;
 }
+
 .content{
   height: 100%;
 }
+
 .img-slider{
   position: relative;
   background: #f2f2f2;
@@ -264,11 +282,13 @@ a {
   margin: 3rem 1.5rem 3rem 0.8rem;
   overflow: hidden;
 }
+
 .img-slider img{
   width: 40%;
   height: 100%;
   margin-left: 5%;
 }
+
 .slider-content {
   position: absolute;
   right: 0;
@@ -276,17 +296,20 @@ a {
   width: 40%;
   height: 60%;
 }
+
 .slider-content h2{
   font-size: 19px;
   font-weight: 400;
   color: #19caaf;
   margin-bottom: 0;
 }
+
 .slider-content p{
   margin: 0 0 10px;
   color: #807e7e;
   line-height: 16px;
 }
+
 .slider-content a{
   margin-top: 5px;
   position: relative;
@@ -298,18 +321,22 @@ a {
   background: #2f2f2f;
   font-size: 14px;
 }
+
 .slider-content a:hover{
   background: #19caaf !important;
   color: #fff !important;
   text-decoration: none;
 }
+
 .tv{
   width: 66% !important;
   margin-top: 3rem;
 }
+
 .ipad{
   width: 46% !important;
 }
+
 .prev-next{
   position: absolute;
   bottom: 0;
@@ -317,15 +344,18 @@ a {
   padding: 6px;
   width: 8%;
 }
+
 .prev-next a{
   padding: 1px;
   background: #000;
   border-radius: 1rem;
   color: #fff;
 }
+
 .prev-next a:hover{
   color: #19caaf !important;
 }
+
 .banners .banner-box {
     position: relative;
 }
@@ -390,4 +420,9 @@ a {
     display: block;
     max-width: 100%;
     height: auto;
+
+
+.error {
+  color: red;
+
 }
