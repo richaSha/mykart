@@ -80,7 +80,6 @@ post('/login') do
   end
 end
 
-
 get('/cart') do
   @seprate_cataegory = false;
   erb(:cart)
