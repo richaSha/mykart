@@ -40,12 +40,19 @@ end
 
 get('/products') do
   @category_list = Category.all()
+  @products = Product.all
   erb(:products)
 end
 
 get("/category/:id") do
   @category = Category.find(params[:id])
   erb(:category)
+end
+
+get("/product/:id") do
+  @category_list = Category.all()
+  @product = Product.find(params[:id])
+  erb(:product)
 end
 
 post('/create_account') do
@@ -73,7 +80,7 @@ post('/login') do
   end
 end
 
-post("/add_category") do
+post('/add_category') do
   session['error'] = nil
   new_category = Category.new({name: params['category-name']})
   if new_category.save
@@ -82,6 +89,31 @@ post("/add_category") do
     session['error'] = new_category
     redirect 'categories'
   end
+end
+
+post('/add_product') do
+  session['error'] = nil
+  category = Category.find(params['category-id'])
+  new_product = Product.new({
+    name: params['name'],
+    category_id: category.id,
+    description: params['description'],
+    quantity: params['quantity'],
+    list_price: params['list-price'],
+    sale_price: params['sale-price']})
+
+  if new_product.save
+    redirect 'products'
+  else
+    session['error'] = new_product
+    redirect 'products'
+  end
+end
+
+post("/add_product/image/:id") do
+  product = Product.find(params[:id])
+  new_image = ProductImage.create({product_id: product.id, url: params['product-image']})
+  redirect "product/#{product.id}"
 end
 
 patch("/update/category/:id") do

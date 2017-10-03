@@ -58,15 +58,15 @@
       </div>
       <div class="container navigation">
         <div class="col-sm-3">
-          <% if session['user'].admin %>
+          <%# if session['user'].admin %>
+            <!-- <br>
             <br>
-            <br>
-            <a href="/admin_page"><button type="button" name="button" class="btn">Return to Admin Page</button></a>
-          <% else %>
+            <a href="/admin_page"><button type="button" name="button" class="btn">Return to Admin Page</button></a> -->
+          <%# else %>
             <div class="box-heading">
               <h3><span class="glyphicon glyphicon-align-justify justify-icon"></span></i>Categories</h3>
               <div class="box-category">
-                <% if @category_list.any? %>
+                <% if @category_list %>
                   <ul>
                     <%@category_list.each do |category|%>
                     <li><a href="/category/<%= category.id %>"><%= category.name %></a></li>
@@ -75,7 +75,7 @@
                 <% end %>
               </div>
             </div>
-          <% end %>
+          <%# end %>
         </div>
         <div class="col-sm-9">
           <nav id="top" class="top_panel">
@@ -100,10 +100,10 @@
                     </a>
                 </li>
                 <li>
-                  <% if session['user'].admin %>
+                  <%# if session['user'].admin %>
                     <a href="/admin_page"><span class="glyphicon glyphicon-star"></span><span class="nav-name">Admin Page</span>
                     </a>
-                  <% end %>
+                  <%# end %>
                 </li>
             </ul>
               <div class="box-cart">
