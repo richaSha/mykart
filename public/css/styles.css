@@ -483,3 +483,7 @@ a {
 .error {
   color: red;
 }
+
+#cart_content {
+  padding-bottom: 10px;
+}

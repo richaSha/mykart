@@ -1,1 +1,159 @@
-test
+<div class="container">
+  <!-- ::before -->
+  <div class="row">
+    <!-- ::before -->
+    <div id="cart_content" class="col-sm-12">
+      <ul class="breadcrumb">
+        <li>
+          <!-- need to specify link -->
+          <a href="#">
+            <i class="fa fa-home">
+              <!-- ::before -->
+            </i>
+          </a>
+          <!-- ::after -->
+        </li>
+        <li>
+          <!-- ::before -->
+          <!-- need to specify link -->
+          <a href="#">
+            Shopping Cart
+          </a>
+          <!-- ::after -->
+        </li>
+      </ul>
+      <h1>Shopping Cart</h1>
+      <!-- need to connect 'shopping_cart' form -->
+      <!-- need to specify link for 'action' -->
+      <form class="shopping_cart" action="#" method="post">
+        <div class="table-responsive">
+          <!-- need to create css 'table', 'table-bordered' -->
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <td class="text-center">Image</td>
+                <td class="text-left">Product Number</td>
+                <td class="text-left">Category</td>
+                <td class="text-left">Quantity</td>
+                <td class="text-right">Unit Price</td>
+                <td class="text-right">Total</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="text-center">
+                  <!-- need to create class 'image'? -->
+                  <div class="image">
+                    <!-- need to specify link -->
+                    <a href="#">
+                      <!-- need to specify product image -->
+                      <!-- need to specify 'title' of product -->
+                      <img src="#" alt="image of product" title="name of product" class=img-thumbnail>
+                    </a>
+                  </div>
+                </td>
+                <td class="text-left">
+                  <!-- # need to specify product name/link -->
+                  <a href="#">Product Name</a>
+                </td>
+                <!-- need to display category name -->
+                <td class="text-left">Category</td>
+                <td class="text-left">
+                  <div class="input-group btn-block" style="max-width: 200px;">
+                    <p class="clearfix">
+                      <!-- ::before -->
+                      <!-- not sure about 'cart-q', whether it is usuable -->
+                      <input type="text" name="quantity[100]" value="1" size="1" class="form-control cart-q" id="cart-q">
+                      <!-- ::after -->
+                    </p>
+                    <div>
+                      <!-- omitted some attributes likely needed to update qty -->
+                      <button type="submit" clas="btn btn-primary"  data-original-title="Update">
+                        <i class="fa fa-refresh">
+                          <!-- ::before -->
+                        </i>
+                      </button>
+                      <!-- change 'cart'.remove to correct name -->
+                      <!-- omitted some attributes likely needed to delete item from cart -->
+                      <button type="button" class="btn btn-danger" onclick='cart.remove(100)' data-original-title="Remove">
+                        <i class='fa fa-times-circle'>
+                          <!-- ::before -->
+                        </i>
+                      </button>
+                    </div>
+                  </div>
+                </td>
+                <td class="text-right">
+                  <!-- need to create css class 'cart-price' -->
+                  <div class="cart-price">
+                    unit price
+                  </div>
+                </td>
+                <td class="text-right">
+                  <!-- need to create css class 'price-total' -->
+                  <div class="price price-total">
+                    total price
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </form>
+      <div class="row">
+        <!-- ::before -->
+        <div class="col-sm-12">
+          <table class="table table-bordered">
+            <tbody>
+              <tr>
+                <td class="text-right">
+                  <strong>Sub-Total:</strong>
+                </td>
+                <td class="text-right">
+                  <!-- need to display subtotal price here -->
+                  <div class="price">
+                    subtotal price here
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td class="text-right">
+                  <strong>Sales Tax (10%)</strong>
+                </td>
+                <td class="text-right">
+                  <div class="price">
+                    sales tax cost here
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="text-right">
+                  <strong>Total:</strong>
+                </td>
+                <td class="text-right">
+                  <div class="price">
+                    total price here
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <!-- make css class 'buttons' -->
+      <div class="buttons">
+        <!-- make css class 'pull-left' -->
+        <div class="pull-left">
+          <!-- specify link -->
+          <a href="#" class="btn btn-default">Continue Shopping</a>
+        </div>
+        <!-- make css class 'pull-right' -->
+        <div class="pull-right">
+          <!-- specify link -->
+          <a href="#" class='btn btn-primary'>Checkout</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

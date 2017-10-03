@@ -8,7 +8,8 @@ Dir[File.dirname(__FILE__) + '/lib/*.rb'].each { |file| require file }
 
 get ('/') do
   @category_list = Category.all()
-  erb(:index)
+  # change 'cart' back to index when done testing
+  erb(:cart)
 end
 
 # get ('/') do
