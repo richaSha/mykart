@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Shoe Store</title>
+    <title>My Kart</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/styles.css">
    <!-- jQuery library -->
@@ -60,6 +60,7 @@
       <%if @seprate_cataegory %>
         <div class="container navigation">
         <div class="col-sm-3">
+
           <div class="box-heading">
             <h3><span class="glyphicon glyphicon-align-justify justify-icon"></span></i>Categories</h3>
             <div class="box-category">
@@ -70,8 +71,26 @@
                   <%end%>
                 </ul>
               <% end %>
+
+          <% if session['user'].admin %>
+            <br>
+            <br>
+            <a href="/admin_page"><button type="button" name="button" class="btn">Return to Admin Page</button></a>
+          <% else %>
+            <div class="box-heading">
+              <h3><span class="glyphicon glyphicon-align-justify justify-icon"></span></i>Categories</h3>
+              <div class="box-category">
+                <% if @category_list.any? %>
+                  <ul>
+                    <%@category_list.each do |category|%>
+                    <li><a href="/category/<%= category.id %>"><%= category.name %></a></li>
+                    <%end%>
+                  </ul>
+                <% end %>
+              </div>
+
             </div>
-          </div>
+          <% end %>
         </div>
         <div class="col-sm-9">
           <nav id="top" class="top_panel">
@@ -94,6 +113,12 @@
                       <span class="glyphicon glyphicon-shopping-cart carts-icon" ></span>
                       <span class="nav-name">Shopping Cart</span>
                     </a>
+                </li>
+                <li>
+                  <% if session['user'].admin %>
+                    <a href="/admin_page"><span class="glyphicon glyphicon-star"></span><span class="nav-name">Admin Page</span>
+                    </a>
+                  <% end %>
                 </li>
             </ul>
               <div class="box-cart">
