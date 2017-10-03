@@ -17,4 +17,7 @@ $(document).ready(function(){
       slides[slideIndex-1].style.display = "block";
       setTimeout(showSlides, 5000); // Change image every 2 seconds
   }
+  $('.banner-box>a').mouseout(function(){
+    setTimeout(function(){ $(this).find(".s-desc p").css('color', '#19caaf'); }, 3000);
+  })
 })
