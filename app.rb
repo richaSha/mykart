@@ -5,6 +5,8 @@ include BCrypt
 enable :sessions
 Dir[File.dirname(__FILE__) + '/lib/*.rb'].each { |file| require file }
 
+admin = User.create({name: "admin", username: "admin", email: "email@yahoo.com", password: "password", admin: true})
+admin.save
 
 get ('/') do
   @category_list = Category.all()
@@ -29,6 +31,11 @@ end
 get('/logout') do
   session.clear
   redirect "/"
+end
+
+get('/admin_page') do
+  @category_list = Category.all()
+  erb(:admin)
 end
 
 post('/create_account') do
