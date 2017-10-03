@@ -9,6 +9,7 @@ admin = User.create({name: "admin", username: "admin", email: "email@yahoo.com",
 admin.save
 
 get ('/') do
+  @seprate_cataegory = true;
   @category_list = Category.all()
   erb(:index)
 end

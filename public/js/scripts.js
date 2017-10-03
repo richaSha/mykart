@@ -1,15 +1,13 @@
 
 $(document).ready(function(){
   $('.main-content').css('height', $(window).height()-$('.navigation').height());
-
-
   var slideIndex = 0;
   showSlides();
 
   window.plusSlides = function(n) {
     slideIndex += n
     showSlides();
-
+  }
   function showSlides() {
       var i;
       var slides = document.getElementsByClassName("mySlides");
@@ -68,7 +66,6 @@ $(document).ready(function(){
       }
     }
   }
-
 
   $("button.create, input.login").click(function(e){
     var passwordInput = $("input#password").val();
