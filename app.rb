@@ -135,3 +135,25 @@ delete("/delete/category/:id") do
   redirect 'categories'
 
 end
+
+get '/product/:id' do
+  @product = Product.find(pramas.fetch('id').to_i)
+
+  erb :product
+end
+
+post '/product/:id' do
+  if session['user']
+    @quantity = params['quantity']
+    @item = Item.create({quantity: @quantity})
+    @item.products.push(@product)
+    redirect '/gp/:id'
+  else
+  redirect '/login'
+  end
+end
+
+get '/gp/:id' do
+  @product = Product.find(params.fetch('id').to_i)
+
+end
