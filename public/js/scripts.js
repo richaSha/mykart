@@ -1,14 +1,20 @@
 
 $(document).ready(function(){
   $('.main-content').css('height', $(window).height()-$('.navigation').height());
+
   var slideIndex = 0;
   showSlides();
-  function plusSlides(n) {
-    showSlides(slideIndex += n);
+
+  window.plusSlides = function(n) {
+    slideIndex += n
+    showSlides();
   }
   function showSlides() {
       var i;
       var slides = document.getElementsByClassName("mySlides");
+      if (!slides.length) {
+        return
+      }
       for (i = 0; i < slides.length; i++) {
          slides[i].style.display = "none";
       }
