@@ -1,6 +1,7 @@
 
 $(document).ready(function(){
   $('.main-content').css('height', $(window).height()-$('.navigation').height());
+  $('.breadbrumb').css('width', $('.top_panel').width());
   var slideIndex = 0;
   var startIndex = 0;
   var centerIndex = 1;
