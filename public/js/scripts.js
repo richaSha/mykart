@@ -1,15 +1,17 @@
 
 $(document).ready(function(){
   $('.main-content').css('height', $(window).height()-$('.navigation').height());
-
-
   var slideIndex = 0;
-  showSlides();
+  var startIndex = 0;
+  var centerIndex = 1;
+  var lastIndex = 2;
 
+  showSlides();
+  showProducts();
   window.plusSlides = function(n) {
     slideIndex += n
     showSlides();
-
+  }
   function showSlides() {
       var i;
       var slides = document.getElementsByClassName("mySlides");
@@ -46,29 +48,26 @@ $(document).ready(function(){
     // var i;
     var products = document.getElementsByClassName("each-product-showcase");
     if (startIndex < 0){
-      startIndex = products.length;
+      startIndex = products.length-1;
     }else if (lastIndex < 0) {
-      lastIndex = products.length;
+      lastIndex = products.length-1;
     }else if (centerIndex < 0) {
-      centerIndex = products.length;
+      centerIndex = products.length-1;
     }
-    if (startIndex > products.length){
+    if (startIndex == products.length){
       startIndex = 0;
-    }else if (lastIndex > products.length) {
+    }else if (lastIndex == products.length) {
       lastIndex = 0;
-    }else if (centerIndex > products.length) {
+    }else if (centerIndex == products.length) {
       centerIndex = 0;
     }
     for (i = 0; i < products.length; i++) {
-      if (startIndex == i ||  i == lastIndex || i == centerIndex){
-        products[i].style.display = "block";
-      }
-      else{
         products[i].style.display = "none";
-      }
     }
+    products[startIndex].style.display = "block";
+    products[centerIndex].style.display = "block";
+    products[lastIndex].style.display = "block";
   }
-
 
   $("button.create, input.login").click(function(e){
     var passwordInput = $("input#password").val();
