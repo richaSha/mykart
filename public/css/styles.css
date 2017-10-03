@@ -356,6 +356,73 @@ a {
   color: #19caaf !important;
 }
 
+.banners .banner-box {
+    position: relative;
+}
+.banners>div .s-desc h2 {
+  color: #19caaf;
+  font-size: 19px;
+  font-weight: 400;
+}
+.banners>div .s-desc {
+  border: 1px solid #e5e5e5;
+  padding: 1rem;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 17px;
+  bottom: 30px;
+  z-index: -1;
+  transition-property: background;
+  transition-duration: 0.5s;
+  transition-timing-function: linear;
+  transition-delay: 0.3s;
+}
+.banner-box>a:hover .s-desc{
+  border-color:#19caaf;
+  background:#19caaf;
+}
+.banners>div .s-desc h2 {
+    margin-top: 10px;
+    padding-right: 210px;
+    -moz-transition: 0.3s all ease;
+    -o-transition: 0.3s all ease;
+    -webkit-transition: 0.3s all ease;
+    transition: 0.3s all ease;
+    transition-property: color;
+    transition-duration: 0.5s;
+    transition-timing-function: linear;
+    transition-delay: 0.3s;
+}
+.s-desc p{
+  font-size: 1.2rem;
+  color: #6b6363;
+  margin-top: 10px;
+  padding-right: 210px;
+  -moz-transition: 0.3s all ease;
+  -o-transition: 0.3s all ease;
+  -webkit-transition: 0.3s all ease;
+  transition-property: color;
+  transition-duration: 0.5s;
+  transition-timing-function: linear;
+  transition-delay: 0.3s;
+}
+.banner-box>a:hover .s-desc h2 {
+  color:#fff !important;
+}
+.banner-box>a:hover .s-desc p {
+  color:#fff;
+}
+.banner-box>a:hover .link{
+  color:#000 !important;
+}
+.img-responsive {
+    display: block;
+    max-width: 100%;
+    height: auto;
+
+
 .error {
   color: red;
+
 }
