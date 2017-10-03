@@ -1,3 +1,6 @@
+<ul class="breadcrumb">
+  <li><a href="#"><span class="glyphicon glyphicon-home"></span></a></li>
+</ul>
 <div class="row main-content">
   <div class="col-sm-3"></div>
   <div class="col-sm-9 content">
@@ -30,6 +33,122 @@
         <div class="prev-next">
           <a class="prev" onclick="plusSlides(-1)"><span class="glyphicon glyphicon-chevron-left"></span></a>
           <a class="next" onclick="plusSlides(1)"><span class="glyphicon glyphicon-chevron-right"></span></a>
+        </div>
+      </div>
+    </div>
+    <div id="banner0" class="banners row">
+			<div class="col-sm-6 banner-1" style="visibility: inherit; opacity: 1; left: 0px;">
+    		<div class="banner-box">
+    			<a class="clearfix" href="/">
+    				<img src="https://livedemo00.template-help.com/opencart_52995/image/cache/catalog/banner-1-420x213.png" alt="banner-1" class="img-responsive">
+						<div class="s-desc"><h2>TV &amp; Video</h2>
+              <p>Comfort is a very important thing nowadays because it is a condition of satisfaction.</p>
+              <p class="link">Shop now!</p>
+            </div>
+					</a>
+    		</div>
+    	</div>
+			<div class="col-sm-6 banner-1" style="visibility: inherit; opacity: 1; right: 0px;">
+  		<div class="banner-box">
+  			<a class="clearfix" href="/">
+  				<img src="https://livedemo00.template-help.com/opencart_52995/image/cache/catalog/banner-2-420x213.png" alt="banner-1" class="img-responsive">
+          <div class="s-desc"><h2>Home appliances</h2>
+          <p>Comfort is a very important thing nowadays because it is a condition of satisfaction.</p>
+          <p class="link">Shop now!</p></div>
+        </a>
+  		</div>
+	  </div>
+  </div>
+    <div class="product-showcase">
+      <div class="product-heading">
+        <h3>Home Appliance
+          <div class="icon-up-down">
+            <span class="glyphicon glyphicon-chevron-up up"></span>
+            <span class="glyphicon glyphicon-chevron-down down"></span>
+          </div>
+        </h3>
+        <div class="product row">
+          <% if @electronics_item%>
+            <% @electronics_item.each do |item|%>
+              <div class="col-sm-4 each-product-showcase">
+                <img src="<%=item.url%>" alt="<%=item.name%>">
+                <div class="showcase-item-price">
+                  <p><%=item.title%></p>
+                  <p><%=item.rating%></p>
+                  <p><%=item.price%></p>
+                  <a href="#"><span class="glyphicon glyphicon-shopping-cart"></span></a>
+                  <a href="#"><span class="glyphicon glyphicon-check"></span></a>
+                </div>
+              </div>
+            <%end%>
+
+          <%else%>
+            <div class="col-sm-4 each-product-showcase">
+              <div class="showcase-wrapper">
+                <img src="https://livedemo00.template-help.com/opencart_52995/image/cache/catalog/product-55-230x210.png" alt="">
+                <div class="showcase-item-price">
+                  <p>LG Iron box with steam</p>
+                  <p>****</p>
+                  <p>$501</p>
+                </div>
+                <div class="link">
+                  <a href="#"><span class="glyphicon glyphicon-shopping-cart"></span>Add to cart</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-4 each-product-showcase">
+              <div class="showcase-wrapper">
+                <img src="https://livedemo00.template-help.com/opencart_52995/image/cache/catalog/product-55-230x210.png" alt="">
+                <div class="showcase-item-price">
+                  <p>LG Iron box with steam</p>
+                  <p>****</p>
+                  <p>$502</p>
+                </div>
+                <div class="link">
+                  <a href="#"><span class="glyphicon glyphicon-shopping-cart"></span>Add to cart</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-4 each-product-showcase">
+              <div class="showcase-wrapper">
+                <img src="https://livedemo00.template-help.com/opencart_52995/image/cache/catalog/product-55-230x210.png" alt="">
+                <div class="showcase-item-price">
+                  <p>LG Iron box with steam</p>
+                  <p>****</p>
+                  <p>$503</p>
+                </div>
+                <div class="link">
+                  <a href="#"><span class="glyphicon glyphicon-shopping-cart"></span>Add to cart</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-4 each-product-showcase">
+              <div class="showcase-wrapper">
+                <img src="https://livedemo00.template-help.com/opencart_52995/image/cache/catalog/product-55-230x210.png" alt="">
+                <div class="showcase-item-price">
+                  <p>LG Iron box with steam</p>
+                  <p>****</p>
+                  <p>$504</p>
+                </div>
+                <div class="link">
+                  <a href="#"><span class="glyphicon glyphicon-shopping-cart"></span>Add to cart</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-4 each-product-showcase">
+              <div class="showcase-wrapper">
+                <img src="https://livedemo00.template-help.com/opencart_52995/image/cache/catalog/product-55-230x210.png" alt="">
+                <div class="showcase-item-price">
+                  <p>LG Iron box with steam</p>
+                  <p>****</p>
+                  <p>$505</p>
+                </div>
+                <div class="link">
+                  <a href="#"><span class="glyphicon glyphicon-shopping-cart"></span>Add to cart</a>
+                </div>
+              </div>
+            </div>
+          <%end%>
         </div>
       </div>
     </div>

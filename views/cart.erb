@@ -1,0 +1,51 @@
+<ul class="breadcrumb">
+  <li><a href="/"><span class="glyphicon glyphicon-home"></span></a></li>
+  <li><a href="#">Shopping Cart</a></li>
+</ul>
+<div class="row main-content wrapper">
+  <h1 class="cart-heading">Shopping Cart</h1>
+		<div class="table-responsive">
+		  <table class="table table-bordered">
+			<thead>
+			  <tr>
+				<td class="text-center">Image</td>
+				<td class="text-left">Product Name</td>
+				<td class="text-left">Quantity</td>
+				<td class="text-right">Unit Price</td>
+				<td class="text-right">Total</td>
+			  </tr>
+			</thead>
+			<tbody>
+			  <tr>
+				<td class="text-center">
+          <div class="image">
+            <a href="">
+              <img src="https://livedemo00.template-help.com/opencart_52995/image/cache/catalog/product-52-47x47.png" alt="48-Inch 1080p 60Hz Smart LED TV" title="48-Inch 1080p 60Hz Smart LED TV" class="img-thumbnail">
+            </a>
+          </div>
+				</td>
+				<td class="text-left">
+          <a href="">48-Inch 1080p 60Hz Smart LED TV</a>
+				</td>
+				<td class="text-left">
+					<div class="input-group btn-block" style="max-width: 200px;">
+						<p class="clearfix"><input type="text" name="quantity[5297]" value="1" size="1" class="form-control cart-q" id="cart-q"></p>
+						<div>
+              <form class="" action="/update_cart" method="post">
+                <input type="hidden" name="_method" value="patch">
+                <button type="submit" data-toggle="tooltip" title="" class="btn btn-primary" data-original-title="Update"><i class="fa fa-refresh"></i></button>
+              </form>
+              <form class="" action="/update_cart" method="post">
+                <input type="hidden" name="_method" value="delete">
+			          <button type="button" data-toggle="tooltip" title="" class="btn btn-danger" onclick="cart.remove('5297');" data-original-title="Remove"><i class="fa fa-times-circle"></i></button>
+              </form>
+						</div>
+					</div>
+				</td>
+				<td class="text-right"><div class="price">$550.00</div></td>
+				<td class="text-right"><div class="price price-total">$550.00</div></td>
+			  </tr>
+			 </tbody>
+		  </table>
+		</div>
+</div>
