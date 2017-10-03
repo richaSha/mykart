@@ -57,8 +57,21 @@
           </div>
         </div>
       </div>
-      <div class="container navigation">
+      <%if @seprate_cataegory %>
+        <div class="container navigation">
         <div class="col-sm-3">
+
+          <div class="box-heading">
+            <h3><span class="glyphicon glyphicon-align-justify justify-icon"></span></i>Categories</h3>
+            <div class="box-category">
+              <% if @category_list %>
+                <ul>
+                  <%@category_list.each do |category|%>
+                  <li><a href="/category/<%= category.id %>"><%= category.name %></a></li>
+                  <%end%>
+                </ul>
+              <% end %>
+
           <% if session['user'].admin %>
             <br>
             <br>
@@ -75,6 +88,7 @@
                   </ul>
                 <% end %>
               </div>
+
             </div>
           <% end %>
         </div>
@@ -83,7 +97,7 @@
             <div id="top-links" class="nav">
               <ul class="list-inline">
                 <li>
-                    <a href="#">
+                    <a href="/">
                       <span class="glyphicon glyphicon-home home-icon" ></span>
                       <span class="nav-name">Home</span>
                     </a>
@@ -95,7 +109,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="/cart">
                       <span class="glyphicon glyphicon-shopping-cart carts-icon" ></span>
                       <span class="nav-name">Shopping Cart</span>
                     </a>
@@ -125,6 +139,59 @@
           </nav>
         </div>
         </div>
+      <%else%>
+      <div class="container navigation">
+      <div class="col-sm-12">
+        <nav id="top" class="top_panel">
+          <div id="top-links" class="nav">
+            <ul class="list-inline">
+              <li>
+                  <a href="/">
+                    <span class="glyphicon glyphicon-home home-icon" ></span>
+                    <span class="nav-name">Home</span>
+                  </a>
+              </li>
+              <li class="dropdown">
+                <span class="glyphicon glyphicon-folder-close category-icon"></span>
+                <span class="dropdown-toggle nav-name" type="button" data-toggle="dropdown">Category
+                <span class="caret"></span></span>
+                <ul class="dropdown-menu">
+                  <li><a href="#">Normal</a></li>
+                  <li><a href="#">Normal</a></li>
+                </ul>
+              </li>
+              <li>
+                  <a href="#" title="My Account">
+                    <span class="glyphicon glyphicon-user account-icon"></span>
+                    <span class="nav-name">My Account</span>
+                  </a>
+              </li>
+              <li>
+                  <a href="/cart">
+                    <span class="glyphicon glyphicon-shopping-cart carts-icon" ></span>
+                    <span class="nav-name">Shopping Cart</span>
+                  </a>
+              </li>
+          </ul>
+            <div class="box-cart">
+              <div id="cart" class="cart">
+                <button type="button" data-toggle="dropdown" data-loading-text="Loading..." class="dropdown-toggle">
+                  <img src="/image/cart.gif" alt="cart" class="cart-icon">
+                  <span id="cart-total3" class="cart-total">0 item(s)</span>
+                  <span class="caret hidden-sm cart-down"></span>
+                </button>
+                <ul class="dropdown-menu pull-right">
+                  <li>
+                  <p class="text-center">Your shopping cart is empty!</p>
+                </li>
+                  </ul>
+              </div>
+              </div>
+        </div>
+        </nav>
+      </div>
+      </div>
+      <%end%>
     </header>
     <div class="container">
       <%= yield %>

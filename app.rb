@@ -73,6 +73,10 @@ post('/login') do
   end
 end
 
+get('/cart') do
+  @seprate_cataegory = false;
+  erb(:cart)
+
 post("/add_category") do
   session['error'] = nil
   new_category = Category.new({name: params['category-name']})
@@ -94,4 +98,5 @@ delete("/delete/category/:id") do
   category = Category.find(params[:id])
   Category.where(id: category.id).destroy_all
   redirect 'categories'
+
 end
