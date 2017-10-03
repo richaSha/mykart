@@ -9,8 +9,15 @@ Dir[File.dirname(__FILE__) + '/lib/*.rb'].each { |file| require file }
 # admin.save
 
 get ('/') do
+  @seprate_cataegory = true;
+  @electronics_item =
   @category_list = Category.all()
+<<<<<<< HEAD
   # change 'cart' back to index when done testing
+=======
+  @home_applianace = Category.find_by(name: 'Home Appliance')
+  home_applianace = Category.find_by(name: 'Home Appliance')
+>>>>>>> 13a816602573d5f11359b4ee9505c84d79beb07f
   erb(:index)
 end
 

@@ -21,7 +21,7 @@
         <div class="container">
           <div class="user">
             <% if session['user'] %>
-              <p>Hello, <%= session['user'].name %> </p>
+              <a href="#">Hello, <%= session['user'].name %> </a>
               <a href="/logout">Logout</a>
             <% else %>
               <a href="/new_account" class="signup">Signup</a>
@@ -61,11 +61,7 @@
       <%if @seprate_cataegory %>
         <div class="container navigation">
         <div class="col-sm-3">
-
           <%# if session['user'].admin %>
-            <br>
-
-
           <div class="box-heading">
             <h3><span class="glyphicon glyphicon-align-justify justify-icon"></span></i>Categories</h3>
             <div class="box-category">
@@ -76,24 +72,12 @@
                   <%end%>
                 </ul>
               <% end %>
-
-          <%# if session['user'].admin %>
+              <%# if session['user'].admin %>
             <!-- <br>
             <a href="/admin_page"><button type="button" name="button" class="btn">Return to Admin Page</button></a> -->
           <%# else %>
-            <div class="box-heading">
-              <h3><span class="glyphicon glyphicon-align-justify justify-icon"></span></i>Categories</h3>
-              <div class="box-category">
-                <% if @category_list %>
-                  <ul>
-                    <%@category_list.each do |category|%>
-                    <li><a href="/category/<%= category.id %>"><%= category.name %></a></li>
-                    <%end%>
-                  </ul>
-                <% end %>
-              </div>
-
-            </div>
+        </div>
+      </div>
           <%# end %>
         </div>
         <div class="col-sm-9">

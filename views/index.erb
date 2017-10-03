@@ -1,6 +1,4 @@
-<ul class="breadcrumb">
-  <li><a href="#"><span class="glyphicon glyphicon-home"></span></a></li>
-</ul>
+
 <div class="row main-content">
   <div class="col-sm-3"></div>
   <div class="col-sm-9 content">
@@ -68,86 +66,22 @@
           </div>
         </h3>
         <div class="product row">
-          <% if @electronics_item%>
-            <% @electronics_item.each do |item|%>
-              <div class="col-sm-4 each-product-showcase">
-                <img src="<%=item.url%>" alt="<%=item.name%>">
-                <div class="showcase-item-price">
-                  <p><%=item.title%></p>
-                  <p><%=item.rating%></p>
-                  <p><%=item.price%></p>
-                  <a href="#"><span class="glyphicon glyphicon-shopping-cart"></span></a>
-                  <a href="#"><span class="glyphicon glyphicon-check"></span></a>
+          <% if @home_applianace%>
+            <% @home_applianace.products.each do |item|%>
+                <div class="col-sm-4 each-product-showcase">
+                  <div class="showcase-wrapper">
+                    <img src="https://livedemo00.template-help.com/opencart_52995/image/cache/catalog/product-55-230x210.png" alt="">
+                    <div class="showcase-item-price">
+                      <p class="title"><%=item.name%></p>
+                      <p>****</p>
+                      <p>$<%=item.list_price%></p>
+                    </div>
+                    <div class="link">
+                      <a href="#"><span class="glyphicon glyphicon-shopping-cart"></span>Add to cart</a>
+                    </div>
+                  </div>
                 </div>
-              </div>
             <%end%>
-
-          <%else%>
-            <div class="col-sm-4 each-product-showcase">
-              <div class="showcase-wrapper">
-                <img src="https://livedemo00.template-help.com/opencart_52995/image/cache/catalog/product-55-230x210.png" alt="">
-                <div class="showcase-item-price">
-                  <p>LG Iron box with steam</p>
-                  <p>****</p>
-                  <p>$501</p>
-                </div>
-                <div class="link">
-                  <a href="#"><span class="glyphicon glyphicon-shopping-cart"></span>Add to cart</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-4 each-product-showcase">
-              <div class="showcase-wrapper">
-                <img src="https://livedemo00.template-help.com/opencart_52995/image/cache/catalog/product-55-230x210.png" alt="">
-                <div class="showcase-item-price">
-                  <p>LG Iron box with steam</p>
-                  <p>****</p>
-                  <p>$502</p>
-                </div>
-                <div class="link">
-                  <a href="#"><span class="glyphicon glyphicon-shopping-cart"></span>Add to cart</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-4 each-product-showcase">
-              <div class="showcase-wrapper">
-                <img src="https://livedemo00.template-help.com/opencart_52995/image/cache/catalog/product-55-230x210.png" alt="">
-                <div class="showcase-item-price">
-                  <p>LG Iron box with steam</p>
-                  <p>****</p>
-                  <p>$503</p>
-                </div>
-                <div class="link">
-                  <a href="#"><span class="glyphicon glyphicon-shopping-cart"></span>Add to cart</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-4 each-product-showcase">
-              <div class="showcase-wrapper">
-                <img src="https://livedemo00.template-help.com/opencart_52995/image/cache/catalog/product-55-230x210.png" alt="">
-                <div class="showcase-item-price">
-                  <p>LG Iron box with steam</p>
-                  <p>****</p>
-                  <p>$504</p>
-                </div>
-                <div class="link">
-                  <a href="#"><span class="glyphicon glyphicon-shopping-cart"></span>Add to cart</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-4 each-product-showcase">
-              <div class="showcase-wrapper">
-                <img src="https://livedemo00.template-help.com/opencart_52995/image/cache/catalog/product-55-230x210.png" alt="">
-                <div class="showcase-item-price">
-                  <p>LG Iron box with steam</p>
-                  <p>****</p>
-                  <p>$505</p>
-                </div>
-                <div class="link">
-                  <a href="#"><span class="glyphicon glyphicon-shopping-cart"></span>Add to cart</a>
-                </div>
-              </div>
-            </div>
           <%end%>
         </div>
       </div>

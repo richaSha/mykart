@@ -117,7 +117,7 @@
 }
 .user{
   float: right;
-  width: 10%;
+  width: 15%;
   font-size: 13px;
   line-height: 30px;
   font-family: sans-serif;
@@ -490,9 +490,26 @@ a {
 .error {
   color: red;
 }
+<<<<<<< HEAD
 
 #cart_content {
   padding-bottom: 10px;
+=======
+.dropdown-menu{
+  top: 37px;
+  background: #18caaf;
+}
+.dropdown-menu>li>a:hover {
+    color: #18caaf;
+}
+.breadcrumb {
+  margin: 15px 13px 15px 8px;
+  padding: 8px 0;
+  border-radius: 0;
+  border: 1px solid #e1e0e0;
+  background: #f2f2f2;
+  color: #2f2f2f;
+>>>>>>> 13a816602573d5f11359b4ee9505c84d79beb07f
 }
 .text-center {
     text-align: center;
@@ -506,4 +523,9 @@ a {
 .btn-success {
   background: #19caaf;
   border-color: #19caaf;
+}
+.title{
+  margin: 0 0 10px;
+  height: 46px;
+  overflow: hidden;
 }
