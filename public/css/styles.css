@@ -210,15 +210,22 @@ a {
   margin-left: 2rem !important;
 }
 
-.home-icon, .account-icon, .carts-icon{
+.home-icon, .account-icon, .carts-icon, .category-icon{
   color: #19caaf;
   margin-left: 20px;
 }
 
 .nav-name{
-  margin: 5px;;
+  margin: 5px;
+  color: #fff;
 }
-
+.nav-name:hover{
+  text-decoration: none;
+  color: #19caaf;
+}
+.navigation a:hover{
+  text-decoration: none;
+}
 .box-heading h3 {
     padding: 18px 5px 18px 20px;
     font-size: 19px;
@@ -486,4 +493,17 @@ a {
 
 #cart_content {
   padding-bottom: 10px;
+}
+.text-center {
+    text-align: center;
+}
+.text-left {
+    text-align: left;
+}
+.text-right {
+    text-align: right;
+}
+.btn-success {
+  background: #19caaf;
+  border-color: #19caaf;
 }

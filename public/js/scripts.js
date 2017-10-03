@@ -1,15 +1,21 @@
 
 $(document).ready(function(){
   $('.main-content').css('height', $(window).height()-$('.navigation').height());
-  var startIndex= 0;
-  var centerIndex =1;
-  var lastIndex = 2;
+
+
   var slideIndex = 0;
   showSlides();
-  showProducts()
+
+  window.plusSlides = function(n) {
+    slideIndex += n
+    showSlides();
+
   function showSlides() {
       var i;
       var slides = document.getElementsByClassName("mySlides");
+      if (!slides.length) {
+        return
+      }
       for (i = 0; i < slides.length; i++) {
          slides[i].style.display = "none";
       }
@@ -80,5 +86,6 @@ $(document).ready(function(){
     }
 
   });
+  $('.carousel').carousel();
 
 });
