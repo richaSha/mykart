@@ -84,6 +84,7 @@ end
 get('/cart') do
   @seprate_cataegory = false;
   erb(:cart)
+end
 
 post("/add_category") do
 

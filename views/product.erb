@@ -1,35 +1,29 @@
 <div class="row">
-  <div class="heading">
-    <i class="fa fa-file-text-o"></i>
-    <div class="extra-wrap">
-      <h2><% @product.name %></h2>
+  <div class="col-md-8 col-md-offset-3">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3><%= @product.name %></h3>
+        <p> <%= @product.description %> </p>
+        <p> <%= @product.quantity %> </p>
+        <p> <%= @product.list_price %> </p>
+        <p> <%= @product.sale_price %> </p>
+      </div>
     </div>
-  </div>
-  <div class="col-sm-6">
-    <div class="carousel">
-      <% @images.each do |image| %>
-      <a class="carousel-item" href="#<%= image.description %>"><img src="<%= image.url %>"></a>
+    <div class="panel-body">
+      <form class="" action="/add_product/image/<%= @product.id%>" method="post">
+        <div class="form-group">
+          <label for="image">Image Link</label>
+          <input type="text" name="product-image" class="form-controll">
+          <button type="submit" name="button" class="btn">Add Image</button>
+        </div>
+      </form>
+      <% if @product.product_images.any? %>
+        <% @product.product_images.each do |image| %>
+          <img src="<%= image.url %>" alt="">
+        <% end %>
+      <% else %>
+        <p>This product has no images at this time</p>
       <% end %>
     </div>
   </div>
-  <div class="col-sm-6">
-    <p>
-      <%= @product.description %></p>
-    <hr>
-    <p>
-      <%= @product.list_price %></p>
-    <hr>
-    <p>
-      <%= @product.sale_price %></p>
-    <hr>
-  </div>
-  <div class="col-sm-6">
-    <form action="/product" method="post">
-      <label for="quantity">Quantity:
-      </label>
-      <input type="text" name="quantity">
-      <button type="button" name="add_to_cart"></button>
-    </form>
-  </div>
-</div>
 </div>
