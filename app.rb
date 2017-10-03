@@ -13,11 +13,6 @@ get ('/') do
   erb(:index)
 end
 
-# get ('/') do
-#   # id = session[:current_user_id]
-#   erb(:login)
-# end
-
 get('/login') do
   @category_list = Category.all()
   erb(:login)
@@ -38,9 +33,19 @@ get('/admin_page') do
   erb(:admin)
 end
 
+get('/categories') do
+  @category_list = Category.all()
+  erb(:categories)
+end
+
+get('/products') do
+  @category_list = Category.all()
+  erb(:products)
+end
+
 post('/create_account') do
   session['error'] = nil
-  new_user = User.new({name: params['name'], username: params['username'], password: params['password'], email: params['email']})
+  new_user = User.new({name: params['name'], username: params['username'], password: params['password'], email: params['email'], admin: false})
   if new_user.save
     redirect 'login'
   else
@@ -60,5 +65,16 @@ post('/login') do
   else
     @category_list = Category.all()
     erb(:error)
+  end
+end
+
+post("/add_category") do
+  session['error'] = nil
+  new_category = Category.new({name: params['category-name']})
+  if new_category.save
+    redirect 'categories'
+  else
+    session['error'] = new_category
+    redirect 'categories'
   end
 end
