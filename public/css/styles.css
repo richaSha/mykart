@@ -536,3 +536,8 @@ a {
 .cart-heading{
   margin: 0;
 }
+.title{
+  margin: 0 0 10px;
+  height: 46px;
+  overflow: hidden;
+}

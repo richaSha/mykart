@@ -10,7 +10,10 @@ admin.save
 
 get ('/') do
   @seprate_cataegory = true;
+  @electronics_item =
   @category_list = Category.all()
+  @home_applianace = Category.find_by(name: 'Home Appliance')
+  home_applianace = Category.find_by(name: 'Home Appliance')
   erb(:index)
 end
 
