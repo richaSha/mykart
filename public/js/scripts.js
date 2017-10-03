@@ -1,11 +1,10 @@
 
 $(document).ready(function(){
   $('.main-content').css('height', $(window).height()-$('.navigation').height());
+
   var slideIndex = 0;
   showSlides();
-  function plusSlides(n) {
-    showSlides(slideIndex += n);
-  }
+
   function showSlides() {
       var i;
       var slides = document.getElementsByClassName("mySlides");
@@ -17,7 +16,7 @@ $(document).ready(function(){
       slides[slideIndex-1].style.display = "block";
       setTimeout(showSlides, 5000); // Change image every 2 seconds
   }
-  $('.banner-box>a').mouseout(function(){
-    setTimeout(function(){ $(this).find(".s-desc p").css('color', '#19caaf'); }, 3000);
-  })
+  function plusSlides(n) {
+    showSlides(slideIndex += n);
+  }
 })
