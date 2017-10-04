@@ -211,3 +211,11 @@ get '/gp/:id' do
   @product = Product.find(params.fetch('id').to_i)
 
 end
+
+delete("/delete_from/cart/:id") do
+  binding.pry
+  product = Product.find(params[:id])
+  cart = Cart.find(session['user'].cart_id)
+  cart.update({product_id: nil})
+
+end

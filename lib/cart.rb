@@ -1,4 +1,4 @@
 class Cart < ActiveRecord::Base
-  has_many :products, through: :items
+  belongs_to :product
   belongs_to :user
 end

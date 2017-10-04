@@ -70,6 +70,7 @@
                 <td class="text-left"><%= @category.name %></td>
                 <td class="text-left">
                   <div class="input-group btn-block" style="max-width: 200px;">
+                    <div>
                     <form class="" action="/cart" method="post">
                       <input name="_method" type="hidden" value="patch">
                       <p class="clearfix">
@@ -77,20 +78,22 @@
                         <input type="text" name="quantity" value="1" size="1" class="form-control">
                         <!-- ::after -->
                       </p>
-                      <div>
                         <button type="submit" class="btn btn-success">
                           <i class="fa fa-refresh">
                             <!-- ::before -->
                           </i>
                         </button>
+                      </form>
                         <!-- change 'cart'.remove to correct name -->
-                        <button type="button" class="btn btn-danger">
-                          <i class='fa fa-times-circle'>
-                            <!-- ::before -->
-                          </i>
-                        </button>
-                      </div>
-                    </form>
+                        <form class="" action="/delete_from/cart/<%= @product.id%>" method="post">
+                          <input type="hidden" name="_method" value="delete">
+                          <button type="button" class="btn btn-danger">
+                            <i class='fa fa-times-circle'>
+                              <!-- ::before -->
+                            </i>
+                          </button>
+                        </form>
+                  </div>
                   </div>
                 </td>
                 <td class="text-right">

@@ -4,7 +4,7 @@ class User  < ActiveRecord::Base
   has_many :cards
   has_many :orders
 
-  belongs_to :cart
+  has_many :products, through: :carts
 
   validates(:name, {presence: true})
   validates(:username, {uniqueness: true, presence: true})
