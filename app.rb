@@ -93,8 +93,8 @@ get("/add_item/cart/:id") do
   @user = User.find(session['user'].id)
   @cart = Cart.find(@user.cart_id)
   @product = Product.find(params[:id])
-  @category = Category.find(@product.category_id)
   @cart.update({product_id: @product.id})
+  binding.pry
   erb(:cart)
 end
 #
@@ -213,9 +213,9 @@ get '/gp/:id' do
 end
 
 delete("/delete_from/cart/:id") do
-  binding.pry
-  product = Product.find(params[:id])
-  cart = Cart.find(session['user'].cart_id)
-  cart.update({product_id: nil})
 
+  cart = Cart.find(params[:id])
+  binding.pry
+  cart.update({product_id: nil})
+  redirect back
 end

@@ -67,7 +67,7 @@
                   <a href="#"><%= @product.name%></a>
                 </td>
                 <!-- need to display category name -->
-                <td class="text-left"><%= @category.name %></td>
+                <td class="text-left"><%= @product.category.name %></td>
                 <td class="text-left">
                   <div class="input-group btn-block" style="max-width: 200px;">
                     <div>
@@ -85,9 +85,9 @@
                         </button>
                       </form>
                         <!-- change 'cart'.remove to correct name -->
-                        <form class="" action="/delete_from/cart/<%= @product.id%>" method="post">
+                        <form class="" action="/delete_from/cart/<%= @cart.id%>" method="post">
                           <input type="hidden" name="_method" value="delete">
-                          <button type="button" class="btn btn-danger">
+                          <button type="submit" class="btn btn-danger">
                             <i class='fa fa-times-circle'>
                               <!-- ::before -->
                             </i>
