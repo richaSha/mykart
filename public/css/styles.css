@@ -1,3 +1,12 @@
+.category-page{
+  margin: 15px 15px 15px 7px !important;
+}
+.title{
+  margin: 0 0 10px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 .hide{
   display:none;
 }
@@ -456,6 +465,7 @@ a {
   border: 1px solid #EDEDED;
   padding: 20px 14px 16px 19px;
   overflow: hidden;
+  margin-bottom: 15px;
 }
 .showcase-wrapper img:hover{
   -moz-transform: scale(1.2);
@@ -524,8 +534,5 @@ a {
   background: #19caaf;
   border-color: #19caaf;
 }
-.title{
-  margin: 0 0 10px;
-  height: 46px;
-  overflow: hidden;
-}
+
+

@@ -22,10 +22,9 @@ admin.save
 
 get ('/') do
   @seprate_cataegory = true;
-  @electronics_item =
   @category_list = Category.all()
-  @home_applianace = Category.find_by(name: 'Home Appliance')
-  home_applianace = Category.find_by(name: 'Home Appliance')
+  @Beauty_Health = Category.find_by(name: 'Beauty & Health')
+  @Books_Audible = Category.find_by(name: 'Books & Audible')
   erb(:index)
 end
 
@@ -61,8 +60,27 @@ get('/products') do
 end
 
 get("/category/:id") do
-  @category = Category.find(params[:id])
-  erb(:category)
+  @id = params[:id].to_i
+  @seprate_cataegory = true;
+  category = Category.find(@id)
+  @category_list = Category.all()
+  @category_products = category.products
+  erb(:category_page)
+end
+
+get('/category/sort/:id/:type') do
+  @id = params[:id].to_i
+  @seprate_cataegory = true;
+  category = Category.find(@id)
+  @category_list = Category.all()
+  binding.pry
+  if params[:type] == "ASC"
+    @category_products = category.products.order(:name)
+  elsif params[:type] == "DES"
+    binding.pry
+    @category_products = category.products.order('name DESC')
+  end
+  erb(:category_page)
 end
 
 get("/product/:id") do
@@ -70,6 +88,8 @@ get("/product/:id") do
   @product = Product.find(params[:id])
   erb(:product)
 end
+
+
 
 post('/create_account') do
   session['error'] = nil
@@ -173,3 +193,5 @@ get '/gp/:id' do
   @product = Product.find(params.fetch('id').to_i)
 
 end
+
+

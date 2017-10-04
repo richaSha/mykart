@@ -2,13 +2,18 @@
 $(document).ready(function(){
   $('.main-content').css('height', $(window).height()-$('.navigation').height());
   $('.breadbrumb').css('width', $('.top_panel').width());
+  var products = document.getElementsByClassName("each-product-showcase");
+  var product1 = document.getElementsByClassName("each-product-showcase1");
   var slideIndex = 0;
   var startIndex = 0;
   var centerIndex = 1;
   var lastIndex = 2;
 
   showSlides();
-  showProducts();
+  if(products.length > 0){ 
+    showProducts(products);
+    showProducts(product1);
+  }
   window.plusSlides = function(n) {
     slideIndex += n
     showSlides();
@@ -35,19 +40,29 @@ $(document).ready(function(){
     startIndex += 1;
     centerIndex += 1
     lastIndex += 1;
-    showProducts();
+    showProducts(products);
   })
   $(".icon-up-down .down").click(function(){
     startIndex -= 1;
     centerIndex -= 1
     lastIndex -= 1;
-    showProducts();
+    showProducts(products);
+  })
+  $(".icon-up-down .up1").click(function(){
+    startIndex += 1;
+    centerIndex += 1
+    lastIndex += 1;
+    showProducts(product1);
+  })
+  $(".icon-up-down .down1").click(function(){
+    startIndex -= 1;
+    centerIndex -= 1
+    lastIndex -= 1;
+    showProducts(product1);
   })
 
-  function showProducts() {
+  function showProducts(products) {
 
-    // var i;
-    var products = document.getElementsByClassName("each-product-showcase");
     if (startIndex < 0){
       startIndex = products.length-1;
     }else if (lastIndex < 0) {

@@ -59,16 +59,45 @@
   </div>
     <div class="product-showcase">
       <div class="product-heading">
-        <h3>Home Appliance
+        <h3>Beauty & Health
           <div class="icon-up-down">
             <span class="glyphicon glyphicon-chevron-up up"></span>
             <span class="glyphicon glyphicon-chevron-down down"></span>
           </div>
         </h3>
         <div class="product row">
-          <% if @home_applianace%>
-            <% @home_applianace.products.each do |item|%>
+          <% if @Beauty_Health%>
+            <% @Beauty_Health.products.each do |item|%>
                 <div class="col-sm-4 each-product-showcase">
+                  <div class="showcase-wrapper">
+                    <img src="https://livedemo00.template-help.com/opencart_52995/image/cache/catalog/product-55-230x210.png" alt="">
+                    <div class="showcase-item-price">
+                      <p class="title"><%=item.name%></p>
+                      <p>****</p>
+                      <p>$<%=item.list_price%></p>
+                    </div>
+                    <div class="link">
+                      <a href="#"><span class="glyphicon glyphicon-shopping-cart"></span>Add to cart</a>
+                    </div>
+                  </div>
+                </div>
+            <%end%>
+          <%end%>
+        </div>
+      </div>
+    </div>
+    <div class="product-showcase">
+      <div class="product-heading">
+        <h3>Books & Audible
+          <div class="icon-up-down">
+            <span class="glyphicon glyphicon-chevron-up up1"></span>
+            <span class="glyphicon glyphicon-chevron-down down1"></span>
+          </div>
+        </h3>
+        <div class="product row">
+          <% if @Books_Audible%>
+            <% @Books_Audible.products.each do |item|%>
+                <div class="col-sm-4 each-product-showcase1">
                   <div class="showcase-wrapper">
                     <img src="https://livedemo00.template-help.com/opencart_52995/image/cache/catalog/product-55-230x210.png" alt="">
                     <div class="showcase-item-price">
