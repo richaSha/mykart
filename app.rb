@@ -17,8 +17,8 @@ categories.each do |category|
   new_category.save
 end
 
-admin = User.create({name: "admin", username: "admin", email: "email@yahoo.com", password: "password", admin: true})
-admin.save
+# admin = User.create({name: "admin", username: "admin", email: "email@yahoo.com", password: "password", admin: true})
+# admin.save
 
 get ('/') do
   @seprate_cataegory = true;
@@ -89,11 +89,26 @@ get("/product/:id") do
   erb(:product)
 end
 
-
+get("/add_item/cart/:id") do
+  user = User.find(session['user'].id)
+  binding.pry
+  product.cart.items({cart_id: session['user'].cart})
+  erb(:cart)
+end
+#
+# post("/add_item/cart/:id") do
+#   item = Item.find(params[:id])
+#   item.update({cart_id: session['user'].cart})
+#   binding.pry
+# end
 
 post('/create_account') do
   session['error'] = nil
-  new_user = User.new({name: params['name'], username: params['username'], password: params['password'], email: params['email'], admin: false})
+  new_user = User.new({name: params['name'], username: params['username'], password: params['password'], email: params['email']})
+  new_user.save
+  new_cart = Cart.new({ user_id: new_user.id })
+  new_cart.save
+
   if new_user.save
     redirect 'login'
   else
@@ -193,5 +208,3 @@ get '/gp/:id' do
   @product = Product.find(params.fetch('id').to_i)
 
 end
-
-

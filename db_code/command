@@ -1,1 +1,1 @@
-copy products from '/Users/richa/Desktop/Workspaces/mykart/db_code/products.csv' DELIMITERS ',' CSV encoding 'windows-1251';
+copy products from '/Users/Guest/Desktop/mykart/db_code/products.csv' DELIMITERS ',' CSV encoding 'windows-1251';

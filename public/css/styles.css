@@ -500,11 +500,11 @@ a {
 .error {
   color: red;
 }
-<<<<<<< HEAD
 
 #cart_content {
   padding-bottom: 10px;
-=======
+}
+
 .dropdown-menu{
   top: 37px;
   background: #18caaf;
@@ -519,7 +519,6 @@ a {
   border: 1px solid #e1e0e0;
   background: #f2f2f2;
   color: #2f2f2f;
->>>>>>> 13a816602573d5f11359b4ee9505c84d79beb07f
 }
 .text-center {
     text-align: center;
@@ -534,5 +533,3 @@ a {
   background: #19caaf;
   border-color: #19caaf;
 }
-
-
