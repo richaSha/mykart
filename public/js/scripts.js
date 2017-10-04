@@ -2,6 +2,7 @@
 $(document).ready(function(){
   $('.main-content').css('height', $(window).height()-$('.navigation').height());
   $('.breadbrumb').css('width', $('.top_panel').width());
+  $('#review-form').hide()
   var products = document.getElementsByClassName("each-product-showcase");
   var product1 = document.getElementsByClassName("each-product-showcase1");
   var slideIndex = 0;
@@ -103,4 +104,7 @@ $(document).ready(function(){
   });
   $('.carousel').carousel();
 
+  $('.close-tab').click(function(){
+    $('#review-form').toggle()
+  })
 });

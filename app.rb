@@ -73,11 +73,9 @@ get('/category/sort/:id/:type') do
   @seprate_cataegory = true;
   category = Category.find(@id)
   @category_list = Category.all()
-  binding.pry
   if params[:type] == "ASC"
     @category_products = category.products.order(:name)
   elsif params[:type] == "DES"
-    binding.pry
     @category_products = category.products.order('name DESC')
   end
   erb(:category_page)
@@ -193,5 +191,35 @@ get '/gp/:id' do
   @product = Product.find(params.fetch('id').to_i)
 
 end
+
+get('/rating/:id') do
+  id = params[:id].to_i;
+  @product  = Product.find(id)
+  if @product.reviews.length != 0
+      @total = @product.reviews.length
+  else
+    @average_rating = 0
+    @percentage_5star = 0
+    @percentage_4star = 0
+    @percentage_3star = 0
+    @percentage_2star = 0
+    @percentage_1star = 0
+    @total = 0
+  end
+  erb(:rating)
+end
+
+post('/review/add/:id') do
+  binding.pry
+  @product = Product.find(params[:id])
+  rating = params.fetch('rating')
+  review = params.fetch('input-review')
+  user.id = session['user'].id
+  Review.create(:product_id => params[:id], :user_id => user.id, :rating => rating, :comment => comment)
+  erb(:rating)
+end
+
+
+
 
 

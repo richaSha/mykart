@@ -12,7 +12,7 @@
                       <select id="input-sort" class="form-control" onchange="location = this.value;">
                         <option selected="selected">Default</option>>
                         <option value="sort/<%=@id%>/ASC" >A-Z</option>
-                        <option value="sort/<%=@id%>/DEC" >Z-A</option>
+                        <option value="sort/<%=@id%>/DES" >Z-A</option>
                       </select>
                     </div>
                     <div class="col-md-3 text-right">
@@ -30,14 +30,20 @@
       <div class="product-heading category-page">
         <div class="product row">
           <% if @category_products%>
-            <% @category_products.each do |item|%>
+            <% @category_products.each do |product|%>
                 <div class="col-sm-4 each-category-showcase">
                   <div class="showcase-wrapper">
                     <img src="https://livedemo00.template-help.com/opencart_52995/image/cache/catalog/product-55-230x210.png" alt="">
                     <div class="showcase-item-price">
-                      <p class="title"><%=item.name%></p>
-                      <p>****</p>
-                      <p>$<%=item.list_price%></p>
+                      <p class="title"><%=product.name%></p>
+                      <% (1..5).each do |element|%>
+                         <%if element > product.reviews.rating %>
+                            <span class="fa fa-star"></span>
+                         <%else%>
+                            <span class="fa fa-star checked"></span>
+                         <%end%>
+                      <%end%>
+                      <p>$<%=product.list_price%></p>
                     </div>
                     <div class="link">
                       <a href="#"><span class="glyphicon glyphicon-shopping-cart"></span>Add to cart</a>

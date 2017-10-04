@@ -1,0 +1,124 @@
+<div class="rating rating-page">
+   <div class="product-rating">
+      <img src="https://livedemo00.template-help.com/opencart_52995/image/cache/catalog/product-55-230x210.png" class="product-rating-img img-thumbnail">
+      <h2><%=@product.name%></h2>
+   </div>
+   <span class="rating-heading">User Rating</span>
+   <% (1..5).each do |element|%>
+      <%if element > @average_rating%>
+         <span class="fa fa-star"></span>
+      <%else%>
+         <span class="fa fa-star checked"></span>
+      <%end%>
+   <%end%>
+   <p><%=@average_rating%> average based on <%=@total%> reviews.</p>
+   <hr style="border:3px solid #f1f1f1">
+   <div class="bar">
+      <div class="side">
+         <div>5 star</div>
+      </div>
+      <div class="middle">
+         <div class="bar-container">
+            <div class="bar-5"></div>
+         </div>
+      </div>
+      <div class="side right">
+         <div><%=@percentage_5star%></div>
+      </div>
+      <div class="side">
+         <div>4 star</div>
+      </div>
+      <div class="middle">
+         <div class="bar-container">
+            <div class="bar-4"></div>
+         </div>
+      </div>
+      <div class="side right">
+         <div><%=@percentage_4star%></div>
+      </div>
+      <div class="side">
+         <div>3 star</div>
+      </div>
+      <div class="middle">
+         <div class="bar-container">
+            <div class="bar-3"></div>
+         </div>
+      </div>
+      <div class="side right">
+         <div><%=@percentage_3star%></div>
+      </div>
+      <div class="side">
+         <div>2 star</div>
+      </div>
+      <div class="middle">
+         <div class="bar-container">
+            <div class="bar-2"></div>
+         </div>
+      </div>
+      <div class="side right">
+         <div><%=@percentage_2star%></div>
+      </div>
+      <div class="side">
+         <div>1 star</div>
+      </div>
+      <div class="middle">
+         <div class="bar-container">
+            <div class="bar-1"></div>
+         </div>
+      </div>
+      <div class="side right">
+         <div><%=@percentage_1star%></div>
+      </div>
+      <div class="review-comment">
+         <% @product.reviews.each do |review|%>
+            <h4><%=review.user.name%></h4>
+            <% (1..5).each do |element|%>
+               <%if element > @review.rating%>
+                  <span class="fa fa-star"></span>
+               <%else%>
+                  <span class="fa fa-star checked"></span>
+               <%end%>
+            <%end%>
+            <p>
+               <%= @review.comment%>
+            </p>
+         <%end%>
+       </div>
+   </div>
+   <div class="write-review">
+      <div class="review-form-title">
+         <h3 class="product-section_title close-tab" id="reviews_form_title">Write a review</h3>
+      </div>
+      <form id="review-form" action="/review/add" method="post">
+         <div class="form-group required">
+            <label class="control-label col-sm-3" for="input-review">Your Review</label>
+            <div class="col-sm-9">
+              <textarea name="text" rows="5" id="input-review" class="form-control"></textarea>
+             </div>
+         </div>
+         <div class="form-group required">
+      <label class="control-label col-sm-3">Rating</label>
+      <div class="col-sm-9 ">
+         &nbsp;&nbsp;&nbsp; Bad&nbsp;
+         <input type="radio" name="rating" value="1">
+         &nbsp;
+         <input type="radio" name="rating" value="2">
+         &nbsp;
+         <input type="radio" name="rating" value="3">
+         &nbsp;
+         <input type="radio" name="rating" value="4">
+         &nbsp;
+         <input type="radio" name="rating" value="5">
+         &nbsp;Good                            
+      </div>
+      <input type="submit" class="btn btn-success rating-button" value='Add Review' />
+   </div>
+</form>
+</div>
+<script>
+   $(".bar-5").width('<%=@percentage_5star%>%');
+   $(".bar-4").width('<%=@percentage_4star%>%');
+   $(".bar-3").width('<%=@percentage_3star%>%');
+   $(".bar-2").width('<%=@percentage_2star%>%');
+   $(".bar-1").width('<%=@percentage_1star%>%');
+</script>

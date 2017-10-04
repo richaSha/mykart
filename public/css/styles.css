@@ -1,5 +1,125 @@
+.checked {
+    color: orange !important;
+}
 .category-page{
   margin: 15px 15px 15px 7px !important;
+}
+.fa-star{
+   color: #000;
+}
+.rating-link:hover{
+   text-decoration: none;
+   margin-bottom: 15px;
+}
+.rating-link span{
+  margin: 0 0 10px
+}
+.rating-heading {
+    font-size: 25px;
+    margin-right: 25px;
+}
+.product-rating-img{
+  border-radius: 10rem;
+  height: 13rem;
+  width: 13rem;
+  background: #f2f2f2;
+}
+.rating .fa {
+    font-size: 25px;
+}
+.side {
+    float: left;
+    width: 15%;
+    margin-top:10px;
+}
+
+.middle {
+    margin-top:10px;
+    float: left;
+    width: 70%;
+}
+.rating-page {
+  margin: 15px;
+}
+.rating h2{
+    display: inline-block;
+    margin-left: 3rem;
+}
+.product-rating{
+    margin-bottom: 2rem;
+}
+
+/* Place text to the right */
+.right {
+    text-align: right;
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+.bar{
+    height: 20rem;
+    overflow: hidden;
+}
+/* The bar container */
+.bar-container {
+    width: 100%;
+    background-color: #f1f1f1;
+    text-align: center;
+    color: white;
+}
+.control-label {
+    text-align: right;
+}
+.review-form-title{
+  text-align: center;
+}
+#input-review{
+  margin-bottom: 15px;
+}
+.rating-button{
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+#reviews_form_title {
+    cursor: pointer;
+    position: relative;
+    border-bottom: 1px solid #ddd;
+    padding: 0 10px 5px;
+    display: inline-block;
+    text-align: center;
+}
+#reviews_form_title:before {
+    display: block;
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border: 10px solid transparent;
+    border-top: 10px solid #ddd;
+    content: '';
+    margin-left: -10px;
+}
+
+/* Individual bars */
+.bar-5 {width: 60%; height: 18px; background-color: #4CAF50;}
+.bar-4 {width: 30%; height: 18px; background-color: #2196F3;}
+.bar-3 {width: 10%; height: 18px; background-color: #00bcd4;}
+.bar-2 {width: 4%; height: 18px; background-color: #ff9800;}
+.bar-1 {width: 15%; height: 18px; background-color: #f44336;}
+
+/* Responsive layout - make the columns stack on top of each other instead of next to each other */
+@media (max-width: 400px) {
+    .side, .middle {
+        width: 100%;
+    }
+    .right {
+        display: none;
+    }
 }
 .title{
   margin: 0 0 10px;
@@ -500,11 +620,10 @@ a {
 .error {
   color: red;
 }
-<<<<<<< HEAD
 
 #cart_content {
   padding-bottom: 10px;
-=======
+}
 .dropdown-menu{
   top: 37px;
   background: #18caaf;
@@ -519,7 +638,6 @@ a {
   border: 1px solid #e1e0e0;
   background: #f2f2f2;
   color: #2f2f2f;
->>>>>>> 13a816602573d5f11359b4ee9505c84d79beb07f
 }
 .text-center {
     text-align: center;
@@ -534,5 +652,6 @@ a {
   background: #19caaf;
   border-color: #19caaf;
 }
+
 
 
