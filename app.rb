@@ -5,19 +5,27 @@ include BCrypt
 enable :sessions
 Dir[File.dirname(__FILE__) + '/lib/*.rb'].each { |file| require file }
 
-# admin = User.create({name: "admin", username: "admin", email: "email@yahoo.com", password: "password", admin: true})
-# admin.save
+categories = []
+File.open('category.txt', 'r') do |file|
+  while file_line = file.gets
+    categories.push(file_line.delete("\n"))
+  end
+end
+categories = categories.sort
+categories.each do |category|
+  new_category = Category.new({name: category})
+  new_category.save
+end
+
+admin = User.create({name: "admin", username: "admin", email: "email@yahoo.com", password: "password", admin: true})
+admin.save
 
 get ('/') do
   @seprate_cataegory = true;
   @electronics_item =
   @category_list = Category.all()
-<<<<<<< HEAD
-  # change 'cart' back to index when done testing
-=======
   @home_applianace = Category.find_by(name: 'Home Appliance')
   home_applianace = Category.find_by(name: 'Home Appliance')
->>>>>>> 13a816602573d5f11359b4ee9505c84d79beb07f
   erb(:index)
 end
 
@@ -90,7 +98,7 @@ end
 
 get('/cart') do
   @seprate_cataegory = false;
-  
+
   erb(:cart)
 end
 

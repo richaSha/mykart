@@ -72,13 +72,8 @@
                   <%end%>
                 </ul>
               <% end %>
-              <%# if session['user'].admin %>
-            <!-- <br>
-            <a href="/admin_page"><button type="button" name="button" class="btn">Return to Admin Page</button></a> -->
-          <%# else %>
-        </div>
-      </div>
-          <%# end %>
+            </div>
+          </div>
         </div>
         <div class="col-sm-9">
           <nav id="top" class="top_panel">
@@ -103,10 +98,10 @@
                     </a>
                 </li>
                 <li>
-                  <%# if session['user'].admin %>
+                  <% if session['user'].admin %>
                     <a href="/admin_page"><span class="glyphicon glyphicon-star"></span><span class="nav-name">Admin Page</span>
                     </a>
-                  <%# end %>
+                  <%end %>
                 </li>
             </ul>
               <div class="box-cart">
@@ -159,6 +154,12 @@
                     <span class="glyphicon glyphicon-shopping-cart carts-icon" ></span>
                     <span class="nav-name">Shopping Cart</span>
                   </a>
+              </li>
+              <li>
+                <% if session['user'].admin %>
+                  <a href="/admin_page"><span class="glyphicon glyphicon-star"></span><span class="nav-name">Admin Page</span>
+                  </a>
+                <%end %>
               </li>
           </ul>
             <div class="box-cart">
