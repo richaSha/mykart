@@ -17,8 +17,8 @@ categories.each do |category|
   new_category.save
 end
 
-admin = User.create({name: "admin", username: "admin", email: "email@yahoo.com", password: "password", admin: true})
-admin.save
+# admin = User.create({name: "admin", username: "admin", email: "email@yahoo.com", password: "password", admin: true})
+# admin.save
 
 get ('/') do
   @seprate_cataegory = true;
@@ -87,11 +87,29 @@ get("/product/:id") do
   erb(:product)
 end
 
-
+get("/add_item/cart/:id") do
+  @user = User.find(session['user'].id)
+  @cart = Cart.find(@user.cart_id)
+  @product = Product.find(params[:id])
+  @cart.update({product_id: @product.id})
+  binding.pry
+  erb(:cart)
+end
+#
+# post("/add_item/cart/:id") do
+#   item = Item.find(params[:id])
+#   item.update({cart_id: session['user'].cart})
+#   binding.pry
+# end
 
 post('/create_account') do
   session['error'] = nil
-  new_user = User.new({name: params['name'], username: params['username'], password: params['password'], email: params['email'], admin: false})
+  new_user = User.new({name: params['name'], username: params['username'], password: params['password'], email: params['email']})
+  new_user.save
+  new_cart = Cart.new({ user_id: new_user.id })
+  new_cart.save
+  new_user.update({cart_id: new_cart.id})
+
   if new_user.save
     redirect 'login'
   else
@@ -121,7 +139,6 @@ get('/cart') do
 end
 
 post("/add_category") do
-
   session['error'] = nil
   new_category = Category.new({name: params['category-name']})
   if new_category.save
@@ -192,6 +209,7 @@ get '/gp/:id' do
 
 end
 
+
 get('/rating/:id') do
   id = params[:id].to_i;
   @product  = Product.find(id)
@@ -219,7 +237,16 @@ post('/review/add/:id') do
   erb(:rating)
 end
 
+get('/product_detail/:id') do
+  @product = Product.find(params[:id])
+  erb(:product_detail)
+end
+
+delete("/delete_from/cart/:id") do
 
 
-
-
+  cart = Cart.find(params[:id])
+  binding.pry
+  cart.update({product_id: nil})
+  redirect back
+end
