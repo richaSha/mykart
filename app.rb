@@ -90,9 +90,11 @@ get("/product/:id") do
 end
 
 get("/add_item/cart/:id") do
-  user = User.find(session['user'].id)
-  binding.pry
-  product.cart.items({cart_id: session['user'].cart})
+  @user = User.find(session['user'].id)
+  @cart = Cart.find(@user.cart_id)
+  @product = Product.find(params[:id])
+  @category = Category.find(@product.category_id)
+  @cart.update({product_id: @product.id})
   erb(:cart)
 end
 #
