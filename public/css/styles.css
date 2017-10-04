@@ -534,5 +534,17 @@ a {
   background: #19caaf;
   border-color: #19caaf;
 }
-
-
+.product-details {
+  float: right;
+}
+.product-image {
+  float: left;
+}
+.gp{
+  margin-top: 5vh;
+  padding-top: 5vh;
+}
+#myCarousel.carousel.slide {
+    width: 100%;
+    max-width: 50px; !important
+}

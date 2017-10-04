@@ -10,7 +10,7 @@ $(document).ready(function(){
   var lastIndex = 2;
 
   showSlides();
-  if(products.length > 0){ 
+  if(products.length > 0){
     showProducts(products);
     showProducts(product1);
   }
