@@ -5,6 +5,18 @@ include BCrypt
 enable :sessions
 Dir[File.dirname(__FILE__) + '/lib/*.rb'].each { |file| require file }
 
+categories = []
+File.open('category.txt', 'r') do |file|
+  while file_line = file.gets
+    categories.push(file_line.delete("\n"))
+  end
+end
+categories = categories.sort
+categories.each do |category|
+  new_category = Category.new({name: category})
+  new_category.save
+end
+
 admin = User.create({name: "admin", username: "admin", email: "email@yahoo.com", password: "password", admin: true})
 admin.save
 
