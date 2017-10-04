@@ -108,6 +108,7 @@ post('/create_account') do
   new_user.save
   new_cart = Cart.new({ user_id: new_user.id })
   new_cart.save
+  new_user.update({cart_id: new_cart.id})
 
   if new_user.save
     redirect 'login'
