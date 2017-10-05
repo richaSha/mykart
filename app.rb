@@ -91,10 +91,10 @@ end
 
 get("/add_item/cart/:id") do
   @user = User.find(session['user'].id)
-  @cart = Cart.find(@user.cart_id)
+  @cart = CartItem.find_by(user_id: @user.id)
   @product = Product.find(params[:id])
-  @cart.update({product_id: @product.id})
   binding.pry
+  @cart.update({product_id: @product.id})
   erb(:cart)
 end
 #
@@ -108,9 +108,8 @@ post('/create_account') do
   session['error'] = nil
   new_user = User.new({name: params['name'], username: params['username'], password: params['password'], email: params['email']})
   new_user.save
-  new_cart = Cart.new({ user_id: new_user.id })
+  new_cart = CartItem.new({ user_id: new_user.id })
   new_cart.save
-  new_user.update({cart_id: new_cart.id})
 
   if new_user.save
     redirect 'login'
@@ -124,7 +123,7 @@ post('/login') do
   email = params['email']
   password = params['password']
   user = User.find_by(email: email, password: password)
-
+# binding.pry
   if user
     session['user'] = user
     redirect "/"
@@ -136,8 +135,11 @@ end
 
 get('/cart') do
   @seprate_cataegory = false;
-
-  erb(:cart)
+  if !session['user']
+    redirect 'login'
+  else
+    redirect "/add_item/cart/#{session['user'].id}"
+  end
 end
 
 post("/add_category") do
@@ -213,9 +215,8 @@ get '/gp/:id' do
 end
 
 delete("/delete_from/cart/:id") do
-
-  cart = Cart.find(params[:id])
-  binding.pry
-  cart.update({product_id: nil})
+# binding.pry
+  cart_item = CartItem.find_by(user_id: session['user'].id)
+  cart_item.delete
   redirect back
 end
