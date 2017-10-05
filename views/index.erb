@@ -73,7 +73,19 @@
                     <img src="https://livedemo00.template-help.com/opencart_52995/image/cache/catalog/product-55-230x210.png" alt="">
                     <div class="showcase-item-price">
                       <p class="title"><%=item.name%></p>
-                      <p>****</p>
+                      <a href="/rating/<%=item.id%>">
+                         <% (1..5).each do |element|%>
+                            <% if item.reviews.length > 0 %>
+                               <%if element > item.reviews.rating %>
+                                  <span class="fa fa-star"></span>
+                               <%else%>
+                            <span class="fa fa-star checked"></span>
+                            <%end%>
+                            <%else%>
+                            <span class="fa fa-star"></span>
+                            <%end%>
+                         <%end%>
+                      </a>
                       <p>$<%=item.list_price%></p>
                     </div>
                     <div class="link">
@@ -102,7 +114,19 @@
                     <img src="https://livedemo00.template-help.com/opencart_52995/image/cache/catalog/product-55-230x210.png" alt="">
                     <div class="showcase-item-price">
                       <p class="title"><%=item.name%></p>
-                      <p>****</p>
+                      <a href="/rating/<%=item.id%>">
+                         <% (1..5).each do |element|%>
+                            <% if item.reviews.length > 0 %>
+                               <%if element > item.reviews.rating %>
+                                  <span class="fa fa-star"></span>
+                               <%else%>
+                            <span class="fa fa-star checked"></span>
+                            <%end%>
+                            <%else%>
+                            <span class="fa fa-star"></span>
+                            <%end%>
+                         <%end%>
+                      </a>
                       <p>$<%=item.list_price%></p>
                     </div>
                     <div class="link">
