@@ -20,17 +20,9 @@
 
   <!-- Wrapper for slides -->
   <div class="carousel-inner">
-    <div class="item active">
-      <img src="https://images-na.ssl-images-amazon.com/images/I/61fIEs7CAuL._SL1200_.jpg" alt="1">
-    </div>
-
-    <div class="item">
-      <img src="https://images-na.ssl-images-amazon.com/images/I/71hhnJSyNhL._SL1200_.jpg" alt="2">
-    </div>
-
-    <div class="item">
-      <img src="https://images-na.ssl-images-amazon.com/images/I/71VzFkyo4YL._SL1200_.jpg" alt="New York">
-    </div>
+    <% @product_image.each do |image| %>
+      <img src="<%=image.url%>" alt="1">
+    <% end %>
   </div>
 
   <!-- Left and right controls -->

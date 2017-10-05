@@ -1,86 +1,84 @@
 <div class="container">
   <div class="shopping-cart">
     <!-- ::before -->
-    <div class="row">
-      <!-- ::before -->
-      <div id="cart_content" class="col-sm-12">
-        <ul class="breadcrumb">
-          <li>
-            <a href="/">
-              <i class="fa fa-home">
-                <!-- ::before -->
-              </i>
-            </a>
-            <!-- ::after -->
-          </li>
-          <li>
-            <!-- ::before -->
-            <!-- need to specify link -->
-            <a href="#">
-              Shopping Cart
-            </a>
-            <!-- ::after -->
-          </li>
-        </ul>
-        <h1>Shopping Cart</h1>
-        <!-- need to connect 'shopping_cart' form -->
-        <!-- need to specify link for 'action' -->
-          <% if @product %>
-          <div class="table-responsive">
-            <table class="table table-bordered">
-              <thead>
-                <tr class="active">
-                  <td class="text-center">
-                    <strong>Image</strong>
-                  </td>
-                  <td class="text-left">
-                    <strong>Product Name</strong>
-                  </td>
-                  <td class="text-left">
-                    <strong>Category</strong>
-                  </td>
-                  <td class="text-left">
-                    <strong>Quantity</strong>
-                  </td>
-                  <td class="text-right">
-                    <strong>Unit Price</strong>
-                  </td>
-                  <td class="text-right">
-                    <strong>Total</strong>
-                  </td>
-                </tr>
-              </thead>
-              <% @product.each do |item| %>
-              <% @total_price += item.quantity * item.list_price %>
-              <tbody>
-                <tr>
-                  <td class="text-center">
-                    <!-- need to create class 'image'? -->
-                    <div class="image">
-                      <!-- need to specify link -->
-                      <a href="#">
-                        <!-- need to specify product image -->
-                        <!-- need to specify 'title' of product -->
-                        <img src="" alt="image of product" title="name of product" class=img-thumbnail>
-                      </a>
-                    </div>
-                  </td>
-                  <td class="text-left">
-                    <!-- # need to specify product name/link -->
-                    <a href="#"><%= item.name%></a>
-                  </td>
-                  <!-- need to display category name -->
-                  <td class="text-left"><%= item.category.name %></td>
-                  <td class="text-left">
-                    <div class="input-group btn-block" style="max-width: 200px;">
-                      <div>
-                      <form class="" action="/cart" method="post">
-                        <input name="_method" type="hidden" value="patch">
-                        <p class="clearfix">
-                            <!-- ::before -->
-                          <input type="text" name="quantity" value="<%= item.quantity%>" size="1" class="form-control">
-                          <!-- ::after -->
-                        </p>
+    <div id="cart_content" class="col-sm-12">
+      <ul class="breadcrumb">
+        <li>
+          <a href="/">
+            <i class="fa fa-home">
+              <!-- ::before -->
+            </i>
+          </a>
+          <!-- ::after -->
+        </li>
+        <li>
+          <!-- ::before -->
+          <!-- need to specify link -->
+          <a href="#">
+            Shopping Cart
+          </a>
+          <!-- ::after -->
+        </li>
+      </ul>
+      <h1>Shopping Cart</h1>
+      <!-- need to connect 'shopping_cart' form -->
+      <!-- need to specify link for 'action' -->
+        <% if @product %>
+        <div class="table-responsive">
+          <table class="table table-bordered">
+            <thead>
+              <tr class="active">
+                <td class="text-center">
+                  <strong>Image</strong>
+                </td>
+                <td class="text-left">
+                  <strong>Product Name</strong>
+                </td>
+                <td class="text-left">
+                  <strong>Category</strong>
+                </td>
+                <td class="text-left">
+                  <strong>Quantity</strong>
+                </td>
+                <td class="text-right">
+                  <strong>Unit Price</strong>
+                </td>
+                <td class="text-right">
+                  <strong>Total</strong>
+                </td>
+              </tr>
+            </thead>
+            <% @product.each do |item| %>
+            <% @total_price += item.quantity * item.list_price %>
+            <tbody>
+              <tr>
+                <td class="text-center">
+                  <!-- need to create class 'image'? -->
+                  <div class="image">
+                    <!-- need to specify link -->
+                    <a href="#">
+                      <!-- need to specify product image -->
+                      <!-- need to specify 'title' of product -->
+                      <img src=<%= item.product_images[0].url%> alt="image of product" title="name of product" class=img-thumbnail>
+                    </a>
+                  </div>
+                </td>
+                <td class="text-left">
+                  <!-- # need to specify product name/link -->
+                  <a href="#"><%= item.name%></a>
+                </td>
+                <!-- need to display category name -->
+                <td class="text-left"><%= item.category.name %></td>
+                <td class="text-left">
+                  <div class="input-group btn-block" style="max-width: 200px;">
+                    <div>
+                    <form class="" action="/cart" method="post">
+                      <input name="_method" type="hidden" value="patch">
+                      <p class="clearfix"></p>
+                          <!-- ::before -->
+                        <input type="text" name="quantity" value="<%= item.quantity%>" size="1" class="form-control">
+                        <!-- ::after -->
+
                           <button type="submit" class="btn btn-success">
                             <i class="fa fa-refresh">
                               <!-- ::before -->
@@ -158,7 +156,7 @@
         </div>
           <div>
             <!-- specify link -->
-            <a href="#" class="btn btn-success">Continue Shopping</a>
+            <a href="/" class="btn btn-success">Continue Shopping</a>
           </div>
           <div>
             <!-- specify link -->

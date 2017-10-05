@@ -1,5 +1,6 @@
 require("bundler/setup")
 require ("pry")
+require ("csv")
 Bundler.require(:default)
 include BCrypt
 enable :sessions
@@ -17,6 +18,13 @@ categories.each do |category|
   new_category.save
 end
 
+if ProductImage.all.empty?
+  CSV.foreach('product_images.csv', { headers: true, :header_converters => :symbol }) do |row|
+    new_image = ProductImage.new(row.to_h)
+    new_image.save
+  end
+end
+
 # admin = User.create({name: "admin", username: "admin", email: "email@yahoo.com", password: "password", admin: true})
 # admin.save
 
@@ -25,6 +33,7 @@ get ('/') do
   @category_list = Category.all()
   @Beauty_Health = Category.find_by(name: 'Beauty & Health')
   @Books_Audible = Category.find_by(name: 'Books & Audible')
+
   erb(:index)
 end
 
@@ -88,17 +97,20 @@ get("/product/:id") do
   erb(:product)
 end
 
-# get("/add_item/cart/:id") do
-#   if session['user']
-#     @user = User.find(session['user'].id)
-#     @product = Product.find(params[:id])
-#     binding.pry
-#     @cart_item = CartItem.create(user_id: @user.id, product_id: params[:id], quantity: 1)
-#     redirect ''
-#   else
-#     redirect 'login'
-#   end
-# end
+get("/add_item/cart/:id") do
+  if session['user']
+    @user = User.find(session['user'].id)
+    item_exist = CartItem.find_by(product_id: params[:id])
+    if item_exist == nil
+      @cart_item = CartItem.create(user_id: @user.id, product_id: params[:id], quantity: 1)
+    else
+      CartItem.update(item_exist.id, :quantity=> item_exist.quantity+1)
+    end
+    redirect '/'
+  else
+    redirect 'login'
+  end
+end
 
 
 post('/create_account') do
@@ -120,7 +132,7 @@ post('/login') do
   email = params['email']
   password = params['password']
   user = User.find_by(email: email, password: password)
-# binding.pry
+#
   if user
     session['user'] = user
     redirect "/"
@@ -132,47 +144,34 @@ end
 
 get('/cart/:order') do
   order = params[:order]
-  @seprate_cataegory = false;
-  if session['user']
-    @total_price = 0
-    @user = User.find(session['user'].id)
-    @cart_item= CartItem.where(user_id: @user.id)
-    @product = []
-    @cart_item.each do |item|
-      # binding.pry
-      if @product.length > 0
-        @product.each do |pro|
-          if pro.id != item.product_id
-            product_obj = Product.find(item.product_id)
-            product_obj.quantity = item.quantity
-            # binding.pry
-            @product.push(product_obj)
-          else
-            pro.quantity += item.quantity
-          end
-        end
-      else
-        product_obj = Product.find(item.product_id)
-        product_obj.quantity = item.quantity
-        # binding.pry
-        @product.push(product_obj)
-      end
-    end
-    if order == 'true'
-      @order = Order.create({user_id: @user.id, status: "Order Placed"})
-      @product.each do |item|
-        total = item.list_price * item.quantity
-        OrderItem.create({order_id: @order.id, product_id: item.id, price: total, quantity: item.quantity})
-      end
+   @total_price = 0
+   @product = []
+   @msg = ""
+   @user = User.find(session['user'].id)
+   item_exist = CartItem.find_by(user_id: session['user'].id)
+   if item_exist == nil
+     @msg = "Currently the are no items in your cart."
+   else
+     @cart_item= CartItem.where(user_id: @user.id)
+     @cart_item.each do |item|
+       product_obj = Product.find(item.product_id)
+       product_obj.quantity = item.quantity
+       @product.push(product_obj)
+     end
+   end
+   if order == 'false'
+     erb(:cart)
+   else
+     @order = Order.create({user_id: @user.id, status: "Order Placed"})
+     @product.each do |item|
+       total = item.list_price * item.quantity
+       OrderItem.create({order_id: @order.id, product_id: item.id, price: total, quantity: item.quantity})
+     end
       CartItem.where(user_id: session['user'].id).delete_all
       redirect '/'
-    else
-      erb(:cart)
-    end
-  else
-    erb(:login)
-  end
+   end
 end
+
 
 post("/add_category") do
   session['error'] = nil
@@ -264,7 +263,7 @@ get('/rating/:id') do
 end
 
 post('/review/add/:id') do
-  binding.pry
+
   @product = Product.find(params[:id])
   rating = params.fetch('rating')
   review = params.fetch('input-review')
@@ -275,18 +274,19 @@ end
 
 get('/product_detail/:id') do
   @product = Product.find(params[:id])
-  erb(:product)
+  @product_image = ProductImage.where(product_id: @product.id)
+  erb(:product_detail)
 end
 
 delete("/delete_from/cart/:id") do
-# binding.pry
+#
   cart_item = CartItem.find_by(user_id: session['user'].id)
   cart_item.delete
   redirect back
 end
 
 post("/checkout/confirm/:product") do
-  binding.pry
+
   @product = parmas[:product]
   @user = User.find(session['user'].id)
   @cart_item= CartItem.where(user_id: @user.id)
@@ -297,4 +297,21 @@ post("/checkout/confirm/:product") do
   end
   CartItem.where("user_id = session['user'].id").delete_all
   erb(:order_detail)
+end
+
+get("/order_history") do
+  @user = User.find(session['user'].id)
+  @orders = Order.where(user_id: @user.id)
+  @order_history = []
+  @orders.each do |order|
+    items = OrderItem.where(order_id: order.id)
+    items.each do |item|
+      product = Product.find(item.product_id)
+      image = ProductImage.find_by(product_id: item.product_id)
+      order_items = {:url =>  image.url, :product_name => product.name, :quantity =>item.quantity}
+      @order_history.push(order_items)
+    end
+  end
+
+  erb(:order_history)
 end
