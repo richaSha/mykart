@@ -1,0 +1,24 @@
+<div class="panel panel-default order_history">
+  <div class="panel-heading">
+    <h3> Hello, <%= @user.name%></h3> <h4>Here is your order history:</h4>
+  </div>
+  <div class="panel-body">
+
+
+    <%@order_history.each do |order|%>
+    <div class="row">
+      <div class="col-sm-5 order">
+        <img src='<%=order[:url]%>' alt="<%=order[:product_name]%>">
+      </div>
+      <div class="col-sm-7">
+        <h5> <%=order[:product_name]%></h4>
+        <h5>  Quantity : <%=order[:quantity]%></h4>
+        <h5>  Status : Your product is on its way</h4>
+      </div>
+      </div>
+      <br>
+      <hr>
+      <% end %>
+
+  </div>
+</div>

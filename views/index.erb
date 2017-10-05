@@ -9,7 +9,7 @@
           <div class="slider-content">
             <h2 style="visibility: inherit; opacity: 1; right: auto;">iPhone 6</h2>
             <p style="visibility: inherit; opacity: 1; right: auto;">Comfort is a very important thing nowadays because it is a condition of satisfaction.</p>
-            <a href="#" style="visibility: inherit; opacity: 1; bottom: 0px;">Shop now!</a>
+            <a href="/category/5" style="visibility: inherit; opacity: 1; bottom: 0px;">Shop now!</a>
           </div>
   			</div>
         <div class="ipadContent mySlides" style="display: none;">
@@ -17,7 +17,7 @@
           <div class="slider-content">
             <h2 style="visibility: inherit; opacity: 1; right: auto;">iPad</h2>
             <p style="visibility: inherit; opacity: 1; right: auto;">Comfort is a very important thing nowadays because it is a condition of satisfaction.</p>
-            <a href="#" style="visibility: inherit; opacity: 1; bottom: 0px;">Shop now!</a>
+            <a href="/category/5" style="visibility: inherit; opacity: 1; bottom: 0px;">Shop now!</a>
           </div>
   			</div>
         <div class="tvContent mySlides" style="display: none;">
@@ -25,7 +25,7 @@
           <div class="slider-content">
             <h2 style="visibility: inherit; opacity: 1; right: auto;">Smart TV</h2>
             <p style="visibility: inherit; opacity: 1; right: auto;">Comfort is a very important thing nowadays because it is a condition of satisfaction.</p>
-            <a href="#" style="visibility: inherit; opacity: 1; bottom: 0px;">Shop now!</a>
+            <a href="/category/5" style="visibility: inherit; opacity: 1; bottom: 0px;">Shop now!</a>
           </div>
   			</div>
         <div class="prev-next">
@@ -73,11 +73,23 @@
                     <img src=<%= item.product_images[0].url%> alt="">
                     <div class="showcase-item-price">
                       <p class="title"><%=item.name%></p>
-                      <p>****</p>
+                      <a href="/rating/<%=item.id%>">
+                         <% (1..5).each do |element|%>
+                            <% if item.reviews.length > 0 %>
+                               <%if element > item.reviews.rating %>
+                                  <span class="fa fa-star"></span>
+                               <%else%>
+                            <span class="fa fa-star checked"></span>
+                            <%end%>
+                            <%else%>
+                            <span class="fa fa-star"></span>
+                            <%end%>
+                         <%end%>
+                      </a>
                       <p>$<%=item.list_price%></p>
                     </div>
                     <div class="link">
-                      <a href="/add_item/cart/<%= item.id%>"><span class="glyphicon glyphicon-shopping-cart"></span>Add to cart</a>
+                      <a href="/add_item/cart/<%=item.id%>"><span class="glyphicon glyphicon-shopping-cart"></span>Add to cart</a>
                     </div>
                   </div>
                 </div>
@@ -102,11 +114,23 @@
                     <img src=<%= item.product_images[0].url%> alt="">
                     <div class="showcase-item-price">
                       <p class="title"><%=item.name%></p>
-                      <p>****</p>
+                      <a href="/rating/<%=item.id%>">
+                         <% (1..5).each do |element|%>
+                            <% if item.reviews.length > 0 %>
+                               <%if element > item.reviews.rating %>
+                                  <span class="fa fa-star"></span>
+                               <%else%>
+                            <span class="fa fa-star checked"></span>
+                            <%end%>
+                            <%else%>
+                            <span class="fa fa-star"></span>
+                            <%end%>
+                         <%end%>
+                      </a>
                       <p>$<%=item.list_price%></p>
                     </div>
                     <div class="link">
-                      <a href="#"><span class="glyphicon glyphicon-shopping-cart"></span>Add to cart</a>
+                      <a href="/add_item/cart/<%=item.id%>"><span class="glyphicon glyphicon-shopping-cart"></span>Add to cart</a>
                     </div>
                   </div>
                 </div>

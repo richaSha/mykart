@@ -1,6 +1,5 @@
 <div class="container">
-  <!-- ::before -->
-  <div class="row">
+  <div class="shopping-cart">
     <!-- ::before -->
     <div id="cart_content" class="col-sm-12">
       <ul class="breadcrumb">
@@ -75,140 +74,122 @@
                     <div>
                     <form class="" action="/cart" method="post">
                       <input name="_method" type="hidden" value="patch">
-                      <p class="clearfix">
+                      <p class="clearfix"></p>
                           <!-- ::before -->
                         <input type="text" name="quantity" value="<%= item.quantity%>" size="1" class="form-control">
                         <!-- ::after -->
-                      </p>
-                        <button type="submit" class="btn btn-success">
-                          <i class="fa fa-refresh">
-                            <!-- ::before -->
-                          </i>
-                        </button>
-                      </form>
-                        <!-- change 'cart'.remove to correct name -->
-                        <form class="" action="/delete_from/cart/<%= item.id%>" method="post">
-                          <input type="hidden" name="_method" value="delete">
-                          <button type="submit" class="btn btn-danger">
-                            <i class='fa fa-times-circle'>
+
+                          <button type="submit" class="btn btn-success">
+                            <i class="fa fa-refresh">
                               <!-- ::before -->
                             </i>
                           </button>
                         </form>
-                  </div>
-                  </div>
-                </td>
-                <td class="text-right">
-                  <!-- need to create css class 'cart-price' -->
-                  <div class="cart-price">
-                    <%= item.list_price %>
-                  </div>
-                </td>
-                <td class="text-right">
-                  <!-- need to create css class 'price-total' -->
-                  <div class="price price-total">
-                    <%= item.list_price * item.quantity %>
-                  </div>
-                </td>
-              </tr>
-              <% end %>
-            </tbody>
-          </table>
-        </div>
-      <div class="row">
-        <!-- ::before -->
-        <div class="col-sm-12">
-          <table class="table table-bordered">
-            <tbody>
-              <tr>
-                <td class="text-right">
-                  <strong>Sub-Total:</strong>
-                </td>
-                <td class="text-right">
-                  <div class="price">
-                    <%= @total_price %>
-                  </div>
-                </td>
-              </tr>
+                          <!-- change 'cart'.remove to correct name -->
+                          <form class="" action="/delete_from/cart/<%= item.id%>" method="post">
+                            <input type="hidden" name="_method" value="delete">
+                            <button type="submit" class="btn btn-danger">
+                              <i class='fa fa-times-circle'>
+                                <!-- ::before -->
+                              </i>
+                            </button>
+                          </form>
+                    </div>
+                    </div>
+                  </td>
+                  <td class="text-right">
+                    <!-- need to create css class 'cart-price' -->
+                    <div class="cart-price">
+                      <%= item.list_price %>
+                    </div>
+                  </td>
+                  <td class="text-right">
+                    <!-- need to create css class 'price-total' -->
+                    <div class="price price-total">
+                      <%= item.list_price * item.quantity %>
+                    </div>
+                  </td>
+                </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        <div class="row">
+          <!-- ::before -->
+          <div class="col-sm-12">
+            <table class="table table-bordered">
+              <tbody>
+                <tr>
+                  <td class="text-right">
+                    <strong>Sub-Total:</strong>
+                  </td>
+                  <td class="text-right">
+                    <div class="price">
+                      <%= @total_price %>
+                    </div>
+                  </td>
+                </tr>
 
-              <tr>
-                <td class="text-right">
-                  <strong>Sales Tax (10%)</strong>
-                </td>
-                <td class="text-right">
-                  <div class="price">
-                    sales tax cost here
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td class="text-right">
-                  <strong>Total:</strong>
-                </td>
-                <td class="text-right">
-                  <div class="price">
-                    total price here
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+                <tr>
+                  <td class="text-right">
+                    <strong>Sales Tax (10%)</strong>
+                  </td>
+                  <td class="text-right">
+                    <div class="price">
+                      sales tax cost here
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="text-right">
+                    <strong>Total:</strong>
+                  </td>
+                  <td class="text-right">
+                    <div class="price">
+                      total price here
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
-      </div>
-        <div>
-          <!-- specify link -->
-          <a href="#" class="btn btn-success">Continue Shopping</a>
-        </div>
-        <div>
-          <!-- specify link -->
-          <!-- <a href="#" class='btn btn-success'>Checkout</a> -->
-        </div>
-        <% else %>
-        <p>No items in Cart</p>
-        <% end %>
+          <div>
+            <!-- specify link -->
+            <a href="/" class="btn btn-success">Continue Shopping</a>
+          </div>
+          <div>
+            <!-- specify link -->
+            <!-- <a href="#" class='btn btn-success'>Checkout</a> -->
+          </div>
+          <% else %>
+          <p>No items in Cart</p>
+          <% end %>
 
-        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Checkout</button>
+          <button type="button" class="btn btn-info btn-lg" id="chekcout">Checkout</button>
 
+  </div>
         <!-- Modal -->
 
-        <div id="myModal" class="modal fade" role="dialog">
-          <div class="modal-dialog">
-
-            <!-- Modal content-->
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">
-                  Order Confirmation
-                </h4>
-              </div>
-
-              <div class="modal-body">
-
-
-
-                <ul>
-                <% @product.each do |item| %>
-                    <li> <%= item.name %> </li>
-                    <li><%=item.quantity%></li>
-                    <li><%=item.list_price%></li>
-                <% end %>
-                <%= @total_price %>
-              </ul>
-
-              <form  action="/" method="post">
-                <input type="hidden" name="s" value="1">
-                <button type="submit" class="btn btn-default" data-dismiss="modal">Confirm</button>
-                  </form>
-                </div>
-
-
-            </div>
-
-          </div>
     </div>
 
 
     </div>
+  </div>
+  <div id="checkout-confirm" class="hide" >
+    <h1>Checkout Confirmation</h1>
+    <ul>
+      <% @product.each do |item| %>
+      <li> <%= item.name %> </li>
+      <li><%=item.quantity%></li>
+      <li><%=item.list_price%></li>
+      <% end %>
+      <%= @total_price %>
+    </ul>
+
+    <form  action="/cart/<%=true%>" method="get">
+      <input type="hidden" name="s" value="1">
+      <button type="submit" class="btn btn-default" data-dismiss="modal">Confirm</button>
+    </form>
   </div>
 </div>

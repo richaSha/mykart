@@ -84,13 +84,13 @@
                            </a>
                         </li>
                         <li>
-                           <a href="#" title="My Account">
+                           <a href="/order_history" title="My Account">
                            <span class="glyphicon glyphicon-user account-icon"></span>
                            <span class="nav-name">My Account</span>
                            </a>
                         </li>
                         <li>
-                           <a href="/cart">
+                           <a href="/cart/<%=false%>">
                            <span class="glyphicon glyphicon-shopping-cart carts-icon" ></span>
                            <span class="nav-name">Shopping Cart</span>
                            </a>
@@ -172,7 +172,6 @@
       </header>
       <div class="container">
          <%= yield %>
-
       </div>
    </body>
 </html>

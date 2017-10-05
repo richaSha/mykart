@@ -93,21 +93,25 @@ end
 get("/product/:id") do
   @category_list = Category.all()
   @product = Product.find(params[:id])
+  @images = ProductImage.find_by(product_id: @product.id)
   erb(:product)
 end
 
 get("/add_item/cart/:id") do
-  @user = User.find(session['user'].id)
-  @product = Product.find(params[:id])
-  @cart_item = CartItem.create(user_id: @user.id, product_id: params[:id], quantity: 1)
-  redirect '/'
+  if session['user']
+    @user = User.find(session['user'].id)
+    item_exist = CartItem.find_by(product_id: params[:id])
+    if item_exist == nil
+      @cart_item = CartItem.create(user_id: @user.id, product_id: params[:id], quantity: 1)
+    else
+      CartItem.update(item_exist.id, :quantity=> item_exist.quantity+1)
+    end
+    redirect '/'
+  else
+    redirect 'login'
+  end
 end
-#
-# post("/add_item/cart/:id") do
-#   item = Item.find(params[:id])
-#   item.update({cart_id: session['user'].cart})
-#
-# end
+
 
 post('/create_account') do
   session['error'] = nil
@@ -138,38 +142,36 @@ post('/login') do
   end
 end
 
-get('/cart') do
-  @seprate_cataegory = false;
-  if session['user']
-    @total_price = 0
-    @user = User.find(session['user'].id)
-    @cart_item= CartItem.where(user_id: @user.id)
-    @product = []
-    @cart_item.each do |item|
-      #
-      if @product.length > 0
-        @product.each do |pro|
-          if pro.id != item.product_id
-
-            product_obj = Product.find(item.product_id)
-            product_obj.quantity = item.quantity
-            @product.push(product_obj)
-          else
-            pro.quantity += item.quantity
-          end
-        end
-      else
-        product_obj = Product.find(item.product_id)
-        product_obj.quantity = item.quantity
-        #
-        @product.push(product_obj)
-      end
-    end
-    erb(:cart)
-  else
-    erb(:login)
-  end
+get('/cart/:order') do
+  order = params[:order]
+   @total_price = 0
+   @product = []
+   @msg = ""
+   @user = User.find(session['user'].id)
+   item_exist = CartItem.find_by(user_id: session['user'].id)
+   if item_exist == nil
+     @msg = "Currently the are no items in your cart."
+   else
+     @cart_item= CartItem.where(user_id: @user.id)
+     @cart_item.each do |item|
+       product_obj = Product.find(item.product_id)
+       product_obj.quantity = item.quantity
+       @product.push(product_obj)
+     end
+   end
+   if order == 'false'
+     erb(:cart)
+   else
+     @order = Order.create({user_id: @user.id, status: "Order Placed"})
+     @product.each do |item|
+       total = item.list_price * item.quantity
+       OrderItem.create({order_id: @order.id, product_id: item.id, price: total, quantity: item.quantity})
+     end
+      CartItem.where(user_id: session['user'].id).delete_all
+      redirect '/'
+   end
 end
+
 
 post("/add_category") do
   session['error'] = nil
@@ -272,6 +274,7 @@ end
 
 get('/product_detail/:id') do
   @product = Product.find(params[:id])
+  @product_image = ProductImage.where(product_id: @product.id)
   erb(:product_detail)
 end
 
@@ -294,4 +297,21 @@ post("/checkout/confirm/:product") do
   end
   CartItem.where("user_id = session['user'].id").delete_all
   erb(:order_detail)
+end
+
+get("/order_history") do
+  @user = User.find(session['user'].id)
+  @orders = Order.where(user_id: @user.id)
+  @order_history = []
+  @orders.each do |order|
+    items = OrderItem.where(order_id: order.id)
+    items.each do |item|
+      product = Product.find(item.product_id)
+      image = ProductImage.find_by(product_id: item.product_id)
+      order_items = {:url =>  image.url, :product_name => product.name, :quantity =>item.quantity}
+      @order_history.push(order_items)
+    end
+  end
+
+  erb(:order_history)
 end
