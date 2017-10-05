@@ -1,53 +1,61 @@
 <div class="row main-content">
-  <div class="col-sm-3"></div>
-  <div class="col-sm-9 content">
-
-
-    <div class="product-filter clearfix">
-        <div class="">
+   <div class="col-sm-3"></div>
+   <div class="col-sm-9 content">
+      <div class="product-filter clearfix">
+         <div class="">
             <div class="col-md-2">
-              <label class="control-label" for="input-sort">Sort By:</label>
-                </div>
-                    <div class="col-md-3">
-                      <select id="input-sort" class="form-control" onchange="location = this.value;">
-                        <option selected="selected">Default</option>>
-                        <option value="sort/<%=@id%>/ASC" >A-Z</option>
-                        <option value="sort/<%=@id%>/DEC" >Z-A</option>
-                      </select>
-                    </div>
-                    <div class="col-md-3 text-right">
-                        <div class="button-view">
-                            <button type="button" id="list-view" class="btn btn-default" data-toggle="tooltip" title="" data-original-title="List"><i class="fa fa-th-list"></i></button>
-                            <button type="button" id="grid-view" class="btn btn-default active" data-toggle="tooltip" title="" data-original-title="Grid"><i class="fa fa-th"></i></button>
-                        </div>
-                    </div>
-                </div>
+               <label class="control-label" for="input-sort">Sort By:</label>
             </div>
-
-
-
-    <div class="product-showcase">
-      <div class="product-heading category-page">
-        <div class="product row">
-          <% if @category_products%>
-            <% @category_products.each do |item|%>
-                <div class="col-sm-4 each-category-showcase">
-                  <div class="showcase-wrapper">
-                    <img src="https://livedemo00.template-help.com/opencart_52995/image/cache/catalog/product-55-230x210.png" alt="">
-                    <div class="showcase-item-price">
-                      <p class="title"><%=item.name%></p>
-                      <p>****</p>
-                      <p>$<%=item.list_price%></p>
-                    </div>
-                    <div class="link">
-                      <a href="#"><span class="glyphicon glyphicon-shopping-cart"></span>Add to cart</a>
-                    </div>
-                  </div>
-                </div>
-            <%end%>
-          <%end%>
-        </div>
+            <div class="col-md-3">
+               <select id="input-sort" class="form-control" onchange="location = this.value;">
+                  <option selected="selected">Default</option>
+                  >
+                  <option value="sort/<%=@id%>/ASC" >A-Z</option>
+                  <option value="sort/<%=@id%>/DES" >Z-A</option>
+               </select>
+            </div>
+            <div class="col-md-3 text-right">
+               <div class="button-view">
+                  <button type="button" id="list-view" class="btn btn-default" data-toggle="tooltip" title="" data-original-title="List"><i class="fa fa-th-list"></i></button>
+                  <button type="button" id="grid-view" class="btn btn-default active" data-toggle="tooltip" title="" data-original-title="Grid"><i class="fa fa-th"></i></button>
+               </div>
+            </div>
+         </div>
       </div>
-    </div>
-  </div>
+      <div class="product-showcase">
+         <div class="product-heading category-page">
+            <div class="product row">
+               <% if @category_products%>
+               <% @category_products.each do |product|%>
+               <div class="col-sm-4 each-category-showcase">
+                  <div class="showcase-wrapper">
+                     <a href="/product_detail/<%=product.id%>"><img src="https://livedemo00.template-help.com/opencart_52995/image/cache/catalog/product-55-230x210.png" alt=""></a>
+                     <div class="showcase-item-price">
+                        <p class="title"><%=product.name%></p>
+                        <a href="/rating/<%=product.id%>">
+                           <% (1..5).each do |element|%>
+                              <% if product.reviews.length > 0 %>
+                                 <%if element > product.reviews.rating %>
+                                    <span class="fa fa-star"></span>
+                                 <%else%>
+                              <span class="fa fa-star checked"></span>
+                              <%end%>
+                              <%else%>
+                              <span class="fa fa-star"></span>
+                              <%end%>
+                           <%end%>
+                        </a>
+                        <p>$<%=product.list_price%></p>
+                     </div>
+                     <div class="link">
+                        <a href="#"><span class="glyphicon glyphicon-shopping-cart"></span>Add to cart</a>
+                     </div>
+                  </div>
+               </div>
+               <%end%>
+               <%end%>
+            </div>
+         </div>
+      </div>
+   </div>
 </div>

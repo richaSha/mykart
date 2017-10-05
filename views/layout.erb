@@ -1,185 +1,178 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>My Kart</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/css/styles.css">
-   <!-- jQuery library -->
-   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-   <!-- Latest compiled JavaScript -->
-   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-   <script type="text/javascript" src="/js/scripts.js">
-   </script>
-  </head>
-  <body>
-    <header class="header">
-      <div class="fixed">
-        <div class="container">
-          <div class="user">
-            <% if session['user'] %>
-              <a href="#">Hello, <%= session['user'].name %> </a>
-              <a href="/logout">Logout</a>
-            <% else %>
-              <a href="/new_account" class="signup">Signup</a>
-              <a href="/login" class="login">Log In</a>
-            <% end %>
-          </div>
-          <div class="box-right">
-            <ul class="social-list">
-               <li><a href="#"><span class="sm sm-facebook" ></span></a></li>
-              <li><a href="#"><span class="sm sm-twitter" ></span></a></li>
-              <li><a href="#"><span class="sm sm-google" ></span></a></li>
-              <li><a href="#"><span class="sm sm-youtube"></span></a></li>
-            </ul>
-          </div>
-        </div>
-        <div class="container">
-          <div class="row">
-            <div class="col-sm-4 col-xs-6">
-              <img src="/image/logo2.png" alt="My kart" class="logo">
-            </div>
-            <div class="col-sm-5 col-xs-6">
-              <div id="search" class="search">
-                  <input type="text" name="search" value="" placeholder="Search">
-                  <button type="button" class="button-search">Search</button>
-                  <div class="clear"></div>
-              </div>
-            </div>
-            <div class="col-sm-3">
-              <div class="phone hidden-xs">
-                <a href="#"><img src="/image/call.png" alt=""></a>
-                <span>800-1234-123</span>
-            </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <%if @seprate_cataegory %>
-        <div class="container navigation">
-        <div class="col-sm-3">
-          <%# if session['user'].admin %>
-          <div class="box-heading">
-            <h3><span class="glyphicon glyphicon-align-justify justify-icon"></span></i>Categories</h3>
-            <div class="box-category">
-              <% if @category_list %>
-                <ul>
-                  <%@category_list.each do |category|%>
-                  <li><a href="/category/<%= category.id %>"><%= category.name %></a></li>
-                  <%end%>
-                </ul>
-              <% end %>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-9">
-          <nav id="top" class="top_panel">
-            <div id="top-links" class="nav">
-              <ul class="list-inline">
-                <li>
-                    <a href="/">
-                      <span class="glyphicon glyphicon-home home-icon" ></span>
-                      <span class="nav-name">Home</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" title="My Account">
-                      <span class="glyphicon glyphicon-user account-icon"></span>
-                      <span class="nav-name">My Account</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="/cart">
-                      <span class="glyphicon glyphicon-shopping-cart carts-icon" ></span>
-                      <span class="nav-name">Shopping Cart</span>
-                    </a>
-                </li>
-                <li>
-                </li>
-            </ul>
-              <div class="box-cart">
-                <div id="cart" class="cart">
-                	<button type="button" data-toggle="dropdown" data-loading-text="Loading..." class="dropdown-toggle">
-                		<img src="/image/cart.gif" alt="cart" class="cart-icon">
-                		<span id="cart-total3" class="cart-total">0 item(s)</span>
-                    <span class="caret hidden-sm cart-down"></span>
-                  </button>
-                  <ul class="dropdown-menu pull-right">
-                		<li>
-                	     <p class="text-center">Your shopping cart is empty!</p>
-                	  </li>
-                	</ul>
-                </div>
-                </div>
-          </div>
-          </nav>
-        </div>
-        </div>
-      <%else%>
-      <div class="container navigation">
-      <div class="col-sm-12">
-        <nav id="top" class="top_panel">
-          <div id="top-links" class="nav">
-            <ul class="list-inline">
-              <li>
-                  <a href="/">
-                    <span class="glyphicon glyphicon-home home-icon" ></span>
-                    <span class="nav-name">Home</span>
-                  </a>
-              </li>
-              <li class="dropdown">
-                <span class="glyphicon glyphicon-folder-close category-icon"></span>
-                <span class="dropdown-toggle nav-name" type="button" data-toggle="dropdown">Category
-                <span class="caret"></span></span>
-                <ul class="dropdown-menu">
-                  <li><a href="#">Normal</a></li>
-                  <li><a href="#">Normal</a></li>
-                </ul>
-              </li>
-              <li>
-                  <a href="#" title="My Account">
-                    <span class="glyphicon glyphicon-user account-icon"></span>
-                    <span class="nav-name">My Account</span>
-                  </a>
-              </li>
-              <li>
-                  <a href="/cart">
-                    <span class="glyphicon glyphicon-shopping-cart carts-icon" ></span>
-                    <span class="nav-name">Shopping Cart</span>
-                  </a>
-              </li>
-              <!-- <li> -->
-                <%# if session['user'].admin %>
-                  <!-- <a href="/admin_page"><span class="glyphicon glyphicon-star"></span><span class="nav-name">Admin Page</span>
-                  </a> -->
-                <%#end %>
-              <!-- </li> -->
-          </ul>
-            <div class="box-cart">
-              <div id="cart" class="cart">
-                <button type="button" data-toggle="dropdown" data-loading-text="Loading..." class="dropdown-toggle">
-                  <img src="/image/cart.gif" alt="cart" class="cart-icon">
-                  <span id="cart-total3" class="cart-total">0 item(s)</span>
-                  <span class="caret hidden-sm cart-down"></span>
-                </button>
-                <ul class="dropdown-menu pull-right">
-                  <li>
-                  <p class="text-center">Your shopping cart is empty!</p>
-                </li>
+   <head>
+      <meta charset="utf-8">
+      <title>My Kart</title>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      <link rel="stylesheet" href="/css/styles.css">
+      <!-- jQuery library -->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+      <!-- Latest compiled JavaScript -->
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+      <script type="text/javascript" src="/js/scripts.js"></script>
+   </head>
+   <body>
+      <header class="header">
+         <div class="fixed">
+            <div class="container">
+               <div class="user">
+                  <% if session['user'] %>
+                  <a href="#">Hello, <%= session['user'].name %> </a>
+                  <a href="/logout">Logout</a>
+                  <% else %>
+                  <a href="/new_account" class="signup">Signup</a>
+                  <a href="/login" class="login">Log In</a>
+                  <% end %>
+               </div>
+               <div class="box-right">
+                  <ul class="social-list">
+                     <li><a href="#"><span class="sm sm-facebook" ></span></a></li>
+                     <li><a href="#"><span class="sm sm-twitter" ></span></a></li>
+                     <li><a href="#"><span class="sm sm-google" ></span></a></li>
+                     <li><a href="#"><span class="sm sm-youtube"></span></a></li>
                   </ul>
-              </div>
-              </div>
+               </div>
+            </div>
+            <div class="container">
+               <div class="row">
+                  <div class="col-sm-4 col-xs-6">
+                     <img src="/image/logo2.png" alt="My kart" class="logo">
+                  </div>
+                  <div class="col-sm-5 col-xs-6">
+                     <div id="search" class="search">
+                        <input type="text" name="search" value="" placeholder="Search">
+                        <button type="button" class="button-search">Search</button>
+                        <div class="clear"></div>
+                     </div>
+                  </div>
+                  <div class="col-sm-3">
+                     <div class="phone hidden-xs">
+                        <a href="#"><img src="/image/call.png" alt=""></a>
+                        <span>800-1234-123</span>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <%if @seprate_cataegory %>
+         <div class="container navigation">
+            <div class="col-sm-3">
+               <%# if session['user'].admin %>
+               <div class="box-heading">
+                  <h3><span class="glyphicon glyphicon-align-justify justify-icon"></span></i>Categories</h3>
+                  <div class="box-category">
+                     <% if @category_list %>
+                     <ul>
+                        <%@category_list.each do |category|%>
+                        <li><a href="/category/<%= category.id %>"><%= category.name %></a></li>
+                        <%end%>
+                     </ul>
+                     <% end %>
+                  </div>
+               </div>
+            </div>
+            <div class="col-sm-9">
+               <nav id="top" class="top_panel">
+                  <div id="top-links" class="nav">
+                     <ul class="list-inline">
+                        <li>
+                           <a href="/">
+                           <span class="glyphicon glyphicon-home home-icon" ></span>
+                           <span class="nav-name">Home</span>
+                           </a>
+                        </li>
+                        <li>
+                           <a href="#" title="My Account">
+                           <span class="glyphicon glyphicon-user account-icon"></span>
+                           <span class="nav-name">My Account</span>
+                           </a>
+                        </li>
+                        <li>
+                           <a href="/cart">
+                           <span class="glyphicon glyphicon-shopping-cart carts-icon" ></span>
+                           <span class="nav-name">Shopping Cart</span>
+                           </a>
+                        </li>
+                        <li>
+                        </li>
+                     </ul>
+                     <div class="box-cart">
+                        <div id="cart" class="cart">
+                           <button type="button" data-toggle="dropdown" data-loading-text="Loading..." class="dropdown-toggle">
+                           <img src="/image/cart.gif" alt="cart" class="cart-icon">
+                           <span id="cart-total3" class="cart-total">0 item(s)</span>
+                           <span class="caret hidden-sm cart-down"></span>
+                           </button>
+                           <ul class="dropdown-menu pull-right">
+                              <li>
+                                 <p class="text-center">Your shopping cart is empty!</p>
+                              </li>
+                           </ul>
+                        </div>
+                     </div>
+                  </div>
+               </nav>
+            </div>
+         </div>
+         <%else%>
+         <div class="container navigation">
+            <div class="col-sm-12">
+               <nav id="top" class="top_panel">
+                  <div id="top-links" class="nav">
+                     <ul class="list-inline">
+                        <li>
+                           <a href="/">
+                           <span class="glyphicon glyphicon-home home-icon" ></span>
+                           <span class="nav-name">Home</span>
+                           </a>
+                        </li>
+                        <li class="dropdown">
+                           <span class="glyphicon glyphicon-folder-close category-icon"></span>
+                           <span class="dropdown-toggle nav-name" type="button" data-toggle="dropdown">Category
+                           <span class="caret"></span></span>
+                           <ul class="dropdown-menu">
+                              <li><a href="#">Normal</a></li>
+                              <li><a href="#">Normal</a></li>
+                           </ul>
+                        </li>
+                        <li>
+                           <a href="#" title="My Account">
+                           <span class="glyphicon glyphicon-user account-icon"></span>
+                           <span class="nav-name">My Account</span>
+                           </a>
+                        </li>
+                        <li>
+                           <a href="/cart">
+                           <span class="glyphicon glyphicon-shopping-cart carts-icon" ></span>
+                           <span class="nav-name">Shopping Cart</span>
+                           </a>
+                        </li>
+                     </ul>
+                     <div class="box-cart">
+                        <div id="cart" class="cart">
+                           <button type="button" data-toggle="dropdown" data-loading-text="Loading..." class="dropdown-toggle">
+                           <img src="/image/cart.gif" alt="cart" class="cart-icon">
+                           <span id="cart-total3" class="cart-total">0 item(s)</span>
+                           <span class="caret hidden-sm cart-down"></span>
+                           </button>
+                           <ul class="dropdown-menu pull-right">
+                              <li>
+                                 <p class="text-center">Your shopping cart is empty!</p>
+                              </li>
+                           </ul>
+                        </div>
+                     </div>
+                  </div>
+               </nav>
+            </div>
         </div>
-        </nav>
+         <%end%>
+      </header>
+      <div class="container">
+         <%= yield %>
+
       </div>
-      </div>
-      <%end%>
-    </header>
-    <div class="container">
-      <%= yield %>
-    </div>
-  </body>
+   </body>
 </html>

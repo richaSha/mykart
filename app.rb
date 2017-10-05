@@ -73,11 +73,9 @@ get('/category/sort/:id/:type') do
   @seprate_cataegory = true;
   category = Category.find(@id)
   @category_list = Category.all()
-  binding.pry
   if params[:type] == "ASC"
     @category_products = category.products.order(:name)
   elsif params[:type] == "DES"
-    binding.pry
     @category_products = category.products.order('name DESC')
   end
   erb(:category_page)
@@ -91,11 +89,9 @@ end
 
 get("/add_item/cart/:id") do
   @user = User.find(session['user'].id)
-  @cart = CartItem.find_by(user_id: @user.id)
   @product = Product.find(params[:id])
-  binding.pry
-  @cart.update({product_id: @product.id})
-  erb(:cart)
+  @cart_item = CartItem.create(user_id: @user.id, product_id: params[:id], quantity: 1)
+  redirect '/'
 end
 #
 # post("/add_item/cart/:id") do
@@ -135,15 +131,38 @@ end
 
 get('/cart') do
   @seprate_cataegory = false;
-  if !session['user']
-    redirect 'login'
+  if session['user']
+    @total_price = 0
+    @user = User.find(session['user'].id)
+    @cart_item= CartItem.where(user_id: @user.id)
+    @product = []
+    @cart_item.each do |item|
+      # binding.pry
+      if @product.length > 0
+        @product.each do |pro|
+          if pro.id != item.product_id
+            product_obj = Product.find(item.product_id)
+            product_obj.quantity = item.quantity
+            # binding.pry
+            @product.push(product_obj)
+          else
+            pro.quantity += item.quantity
+          end
+        end
+      else
+        product_obj = Product.find(item.product_id)
+        product_obj.quantity = item.quantity
+        # binding.pry
+        @product.push(product_obj)
+      end
+    end
+    erb(:cart)
   else
-    redirect "/add_item/cart/#{session['user'].id}"
+    erb(:login)
   end
 end
 
 post("/add_category") do
-
   session['error'] = nil
   new_category = Category.new({name: params['category-name']})
   if new_category.save
@@ -214,9 +233,56 @@ get '/gp/:id' do
 
 end
 
+
+get('/rating/:id') do
+  id = params[:id].to_i;
+  @product  = Product.find(id)
+  if @product.reviews.length != 0
+      @total = @product.reviews.length
+  else
+    @average_rating = 0
+    @percentage_5star = 0
+    @percentage_4star = 0
+    @percentage_3star = 0
+    @percentage_2star = 0
+    @percentage_1star = 0
+    @total = 0
+  end
+  erb(:rating)
+end
+
+post('/review/add/:id') do
+  binding.pry
+  @product = Product.find(params[:id])
+  rating = params.fetch('rating')
+  review = params.fetch('input-review')
+  user.id = session['user'].id
+  Review.create(:product_id => params[:id], :user_id => user.id, :rating => rating, :comment => comment)
+  erb(:rating)
+end
+
+get('/product_detail/:id') do
+  @product = Product.find(params[:id])
+  erb(:product_detail)
+end
+
 delete("/delete_from/cart/:id") do
 # binding.pry
   cart_item = CartItem.find_by(user_id: session['user'].id)
   cart_item.delete
   redirect back
+end
+
+post("/checkout/confirm/:product") do
+  binding.pry
+  @product = parmas[:product]
+  @user = User.find(session['user'].id)
+  @cart_item= CartItem.where(user_id: @user.id)
+  @order = Order.create({user_id: @user.id, status: "Order Placed"})
+  @product.each do |item|
+    total = item.list_price * item.quantity
+    OrderItem.create({order_id: @order.id, product_id: item.id, price: total, quantity: item.quantity})
+  end
+  CartItem.where("user_id = session['user'].id").delete_all
+  erb(:order_detail)
 end
