@@ -86,6 +86,9 @@ end
 get("/product/:id") do
   @category_list = Category.all()
   @product = Product.find(params[:id])
+  @images = ProductImage.find_by(product_id: @product.id)
+
+
   erb(:product)
 end
 
@@ -190,32 +193,25 @@ delete("/delete/category/:id") do
 
 end
 
-get '/product/:id' do
-  @product = Product.find(pramas.fetch('id').to_i)
-
-  erb :product
-end
-
 post '/product/:id' do
   if session['user']
     @quantity = params['quantity']
-    @item = Item.create({quantity: @quantity})
+    if @product.sale_price > 0
+      @price = @product.sale_price
+    else
+      @price = @product.list_price
+    end
+    @item = OrderItem.create({product_id: @product.id, price: @price, quantity: @quantity})
     @item.products.push(@product)
+
     redirect '/gp/:id'
   else
   redirect '/login'
   end
 end
 
-get '/gp/:id' do
+get '/gp/:id/:quantity' do
   @product = Product.find(params.fetch('id').to_i)
-
-end
-
-delete("/delete_from/cart/:id") do
-
-  cart = Cart.find(params[:id])
-  binding.pry
-  cart.update({product_id: nil})
-  redirect back
+  @quantity = params['quantity']
+  erb :gp
 end
