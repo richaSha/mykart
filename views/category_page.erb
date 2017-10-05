@@ -29,7 +29,7 @@
                <% @category_products.each do |product|%>
                <div class="col-sm-4 each-category-showcase">
                   <div class="showcase-wrapper">
-                     <a href="/product_detail/<%=product.id%>"><img src="https://livedemo00.template-help.com/opencart_52995/image/cache/catalog/product-55-230x210.png" alt=""></a>
+                     <a href="/product_detail/<%=product.id%>"><img src=<%= product.product_images[0].url%> alt=""></a>
                      <div class="showcase-item-price">
                         <p class="title"><%=product.name%></p>
                         <a href="/rating/<%=product.id%>">

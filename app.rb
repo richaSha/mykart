@@ -1,5 +1,6 @@
 require("bundler/setup")
 require ("pry")
+require ("csv")
 Bundler.require(:default)
 include BCrypt
 enable :sessions
@@ -17,6 +18,13 @@ categories.each do |category|
   new_category.save
 end
 
+if ProductImage.all.empty?
+  CSV.foreach('product_images.csv', { headers: true, :header_converters => :symbol }) do |row|
+    new_image = ProductImage.new(row.to_h)
+    new_image.save
+  end
+end
+
 # admin = User.create({name: "admin", username: "admin", email: "email@yahoo.com", password: "password", admin: true})
 # admin.save
 
@@ -25,6 +33,7 @@ get ('/') do
   @category_list = Category.all()
   @Beauty_Health = Category.find_by(name: 'Beauty & Health')
   @Books_Audible = Category.find_by(name: 'Books & Audible')
+
   erb(:index)
 end
 
@@ -97,7 +106,7 @@ end
 # post("/add_item/cart/:id") do
 #   item = Item.find(params[:id])
 #   item.update({cart_id: session['user'].cart})
-#   binding.pry
+#
 # end
 
 post('/create_account') do
@@ -119,7 +128,7 @@ post('/login') do
   email = params['email']
   password = params['password']
   user = User.find_by(email: email, password: password)
-# binding.pry
+#
   if user
     session['user'] = user
     redirect "/"
@@ -137,13 +146,13 @@ get('/cart') do
     @cart_item= CartItem.where(user_id: @user.id)
     @product = []
     @cart_item.each do |item|
-      # binding.pry
+      #
       if @product.length > 0
         @product.each do |pro|
           if pro.id != item.product_id
+
             product_obj = Product.find(item.product_id)
             product_obj.quantity = item.quantity
-            # binding.pry
             @product.push(product_obj)
           else
             pro.quantity += item.quantity
@@ -152,7 +161,7 @@ get('/cart') do
       else
         product_obj = Product.find(item.product_id)
         product_obj.quantity = item.quantity
-        # binding.pry
+        #
         @product.push(product_obj)
       end
     end
@@ -252,7 +261,7 @@ get('/rating/:id') do
 end
 
 post('/review/add/:id') do
-  binding.pry
+
   @product = Product.find(params[:id])
   rating = params.fetch('rating')
   review = params.fetch('input-review')
@@ -267,14 +276,14 @@ get('/product_detail/:id') do
 end
 
 delete("/delete_from/cart/:id") do
-# binding.pry
+#
   cart_item = CartItem.find_by(user_id: session['user'].id)
   cart_item.delete
   redirect back
 end
 
 post("/checkout/confirm/:product") do
-  binding.pry
+
   @product = parmas[:product]
   @user = User.find(session['user'].id)
   @cart_item= CartItem.where(user_id: @user.id)

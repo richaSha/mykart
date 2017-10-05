@@ -70,7 +70,7 @@
             <% @Beauty_Health.products.each do |item|%>
                 <div class="col-sm-4 each-product-showcase">
                   <div class="showcase-wrapper">
-                    <img src="https://livedemo00.template-help.com/opencart_52995/image/cache/catalog/product-55-230x210.png" alt="">
+                    <img src=<%= item.product_images[0].url%> alt="">
                     <div class="showcase-item-price">
                       <p class="title"><%=item.name%></p>
                       <p>****</p>
@@ -99,7 +99,7 @@
             <% @Books_Audible.products.each do |item|%>
                 <div class="col-sm-4 each-product-showcase1">
                   <div class="showcase-wrapper">
-                    <img src="https://livedemo00.template-help.com/opencart_52995/image/cache/catalog/product-55-230x210.png" alt="">
+                    <img src=<%= item.product_images[0].url%> alt="">
                     <div class="showcase-item-price">
                       <p class="title"><%=item.name%></p>
                       <p>****</p>

@@ -1,3 +1,8 @@
+.showcase-wrapper img, .image img{
+  width: 230px;
+  height: 210px;
+
+}
 .checked {
     color: orange !important;
 }
@@ -593,6 +598,7 @@ a {
   transform: scale(1.2);
   transition-duration: 0.5s;
 }
+
 .showcase-item-price{
   font-size: 15px;
   color: #19caaf;
@@ -624,10 +630,7 @@ a {
 #cart_content {
   padding-bottom: 10px;
 }
-<<<<<<< HEAD
-=======
 
->>>>>>> b6c4459b7b1b9d01629c37a77446f71c7e993327
 .dropdown-menu{
   top: 37px;
   background: #18caaf;
@@ -656,9 +659,3 @@ a {
   background: #19caaf;
   border-color: #19caaf;
 }
-<<<<<<< HEAD
-
-
-
-=======
->>>>>>> b6c4459b7b1b9d01629c37a77446f71c7e993327
