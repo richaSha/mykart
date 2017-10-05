@@ -620,6 +620,7 @@ a {
 .error {
   color: red;
 }
+<<<<<<< HEAD
 
 #cart_content {
   padding-bottom: 10px;
@@ -628,6 +629,8 @@ a {
 =======
 
 >>>>>>> b6c4459b7b1b9d01629c37a77446f71c7e993327
+=======
+>>>>>>> 22e7ccc67631756a0053741000e1d70664903e9b
 .dropdown-menu{
   top: 37px;
   background: #18caaf;
@@ -657,8 +660,26 @@ a {
   border-color: #19caaf;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 
 
 =======
 >>>>>>> b6c4459b7b1b9d01629c37a77446f71c7e993327
+=======
+.product-details {
+  float: right;
+}
+.product-image {
+  float: left;
+}
+.gp{
+  margin-top: 5vh;
+  padding-top: 5vh;
+}
+#myCarousel.carousel.slide {
+    float: left;
+    width: 100%;
+    max-width: 300px; !important
+}
+>>>>>>> 22e7ccc67631756a0053741000e1d70664903e9b

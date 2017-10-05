@@ -11,7 +11,7 @@ $(document).ready(function(){
   var lastIndex = 2;
 
   showSlides();
-  if(products.length > 0){ 
+  if(products.length > 0){
     showProducts(products);
     showProducts(product1);
   }
@@ -107,4 +107,10 @@ $(document).ready(function(){
   $('.close-tab').click(function(){
     $('#review-form').toggle()
   })
+
+  $("button#chekcout").click(function(e){
+    e.preventDefault();
+    $("div.shopping-cart").addClass("hide")
+    $("div#checkout-confirm").removeClass("hide")
+  });
 });

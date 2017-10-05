@@ -84,21 +84,22 @@ end
 get("/product/:id") do
   @category_list = Category.all()
   @product = Product.find(params[:id])
+  @images = ProductImage.find_by(product_id: @product.id)
   erb(:product)
 end
 
-get("/add_item/cart/:id") do
-  @user = User.find(session['user'].id)
-  @product = Product.find(params[:id])
-  @cart_item = CartItem.create(user_id: @user.id, product_id: params[:id], quantity: 1)
-  redirect '/'
-end
-#
-# post("/add_item/cart/:id") do
-#   item = Item.find(params[:id])
-#   item.update({cart_id: session['user'].cart})
-#   binding.pry
+# get("/add_item/cart/:id") do
+#   if session['user']
+#     @user = User.find(session['user'].id)
+#     @product = Product.find(params[:id])
+#     binding.pry
+#     @cart_item = CartItem.create(user_id: @user.id, product_id: params[:id], quantity: 1)
+#     redirect ''
+#   else
+#     redirect 'login'
+#   end
 # end
+
 
 post('/create_account') do
   session['error'] = nil
@@ -129,7 +130,8 @@ post('/login') do
   end
 end
 
-get('/cart') do
+get('/cart/:order') do
+  order = params[:order]
   @seprate_cataegory = false;
   if session['user']
     @total_price = 0
@@ -156,7 +158,17 @@ get('/cart') do
         @product.push(product_obj)
       end
     end
-    erb(:cart)
+    if order == 'true'
+      @order = Order.create({user_id: @user.id, status: "Order Placed"})
+      @product.each do |item|
+        total = item.list_price * item.quantity
+        OrderItem.create({order_id: @order.id, product_id: item.id, price: total, quantity: item.quantity})
+      end
+      CartItem.where(user_id: session['user'].id).delete_all
+      redirect '/'
+    else
+      erb(:cart)
+    end
   else
     erb(:login)
   end
@@ -263,7 +275,7 @@ end
 
 get('/product_detail/:id') do
   @product = Product.find(params[:id])
-  erb(:product_detail)
+  erb(:product)
 end
 
 delete("/delete_from/cart/:id") do
